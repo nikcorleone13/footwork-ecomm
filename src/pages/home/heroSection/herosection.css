@@ -1,0 +1,15 @@
+@media (max-width:768px){
+    .home-background-div{
+        background-image: url('../../../images/hero/hero-mobile.jpg');
+        background-size:cover;
+        background-repeat: no-repeat;
+        background-position-x: 82%!important;
+    
+    }
+}
+.home-background-div{
+    background-image: url('../../../images/hero/hero-desktop.jpg');
+    background-size: cover;
+    background-position-y:20% ;
+    background-position:right;
+}
