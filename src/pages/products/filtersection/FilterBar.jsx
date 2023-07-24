@@ -3,8 +3,10 @@ import { FaFilter } from "react-icons/fa";
 import { MdClose } from "react-icons/md";
 import { ProductsContext } from "../../../Contexts/ProductsContext/ProductsContext";
 const FilterBar = () => {
+  const { all_data, dispatch } = useContext(ProductsContext);
+
   const [filterBar, setFilterBar] = useState(false);
-  const [price, setPrice] = useState(100);
+  const [price, setPrice] = useState(all_data.price);
   const [htl, setHTL] = useState(false);
   const [lth, setLTH] = useState(false);
   const [oneStar, setOneStar] = useState(false);
@@ -13,13 +15,12 @@ const FilterBar = () => {
   const [fourStar, setFourStar] = useState(false);
 
   // context
-  const { all_data, dispatch } = useContext(ProductsContext);
 
   //price range handle
   const handleRange = (e) => {
     console.log("PRICE", e);
-    setPrice(e);
     dispatch({ type: "PRICE_RANGE", payload: e });
+    setPrice(e);
   };
 
   //   sorting handle
@@ -93,21 +94,27 @@ const FilterBar = () => {
                 <p>Sneakers</p>
                 <input
                   type="checkbox"
-                  onChange={() => dispatch({ type: "sneakers", payload: "" })}
+                  onChange={() =>
+                    dispatch({ type: "CATEGORY", payload: "sneaker" })
+                  }
                 />
               </div>
               <div className="mt-1 w-[40%] md:w-[50%] flex justify-between items-center  ">
                 <p>Running</p>
                 <input
                   type="checkbox"
-                  onChange={() => dispatch({ type: "running", payload: "" })}
+                  onChange={() =>
+                    dispatch({ type: "CATEGORY", payload: "running" })
+                  }
                 />
               </div>
               <div className="mt-1 w-[40%] md:w-[50%] flex justify-between items-center  ">
                 <p>Casual</p>
                 <input
                   type="checkbox"
-                  onChange={() => dispatch({ type: "casual", payload: "" })}
+                  onChange={() =>
+                    dispatch({ type: "CATEGORY", payload: "casual" })
+                  }
                 />
               </div>
             </div>
@@ -212,21 +219,27 @@ const FilterBar = () => {
                   <p>Sneakers</p>
                   <input
                     type="checkbox"
-                    onChange={() => dispatch({ type: "sneakers", payload: "" })}
+                    onChange={() =>
+                      dispatch({ type: "CATEGORY", payload: "sneaker" })
+                    }
                   />
                 </div>
                 <div className="mt-1 w-[40%] md:w-[50%] flex justify-between items-center  ">
                   <p>Running</p>
                   <input
                     type="checkbox"
-                    onChange={() => dispatch({ type: "running", payload: "" })}
+                    onChange={() =>
+                      dispatch({ type: "CATEGORY", payload: "running" })
+                    }
                   />
                 </div>
                 <div className="mt-1 w-[40%] md:w-[50%] flex justify-between items-center  ">
                   <p>Casual</p>
                   <input
                     type="checkbox"
-                    onChange={() => dispatch({ type: "casual", payload: "" })}
+                    onChange={() =>
+                      dispatch({ type: "CATEGORY", payload: "casual" })
+                    }
                   />
                 </div>
               </div>

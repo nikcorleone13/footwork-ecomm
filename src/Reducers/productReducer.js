@@ -5,23 +5,30 @@ export const productReducer = (state, action) => {
         case 'INITIAL_API_DATA':
             {
                 return {
-                    ...state, all_Data: action.payload, sneakers: false, casual: false, running: false, price: 30000, sort: '',
-                    ratings: ''
+                    ...state, all_Data: action.payload, category: [], price: 30000, sort: '',
+                    rating: ''
                 }
             }
-        case 'sneakers': {
-            return {
-                ...state, sneakers: !state.sneakers
-            }
-        }
-        case 'running': {
-            return {
-                ...state, running: !state.running
-            }
-        }
-        case 'casual': {
-            return {
-                ...state, casual: !state.casual
+        case 'CATEGORY': {
+            const categoryValue = action.payload;
+            const currentCategoryArray = state.category;
+
+            if (currentCategoryArray.includes(categoryValue)) {
+                // If the category value is already present, remove it from the array
+                const updatedCategoryArray = currentCategoryArray.filter(
+                    (category) => category !== categoryValue
+                );
+
+                return {
+                    ...state,
+                    category: updatedCategoryArray,
+                };
+            } else {
+                // If the category value is not present, add it to the array
+                return {
+                    ...state,
+                    category: [...currentCategoryArray, categoryValue],
+                };
             }
         }
         case 'PRICE_RANGE': {
@@ -47,7 +54,7 @@ export const productReducer = (state, action) => {
 
         case "RATING": {
             return {
-                ...state, ratings: action.payload
+                ...state, rating: action.payload
             }
         }
         case "SEARCH": {

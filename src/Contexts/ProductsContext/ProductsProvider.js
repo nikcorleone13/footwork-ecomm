@@ -9,12 +9,10 @@ const ProductsProvider = ({ children }) => {
 
     const initialData = {
         all_Data: [],
-        sneakers: false,
-        running: false,
-        casual: false,
-        price: 0,
+        category: [],
+        price: 30000,
         sort: '',
-        ratings: '',
+        rating: '',
         search: ''
     };
 
@@ -42,26 +40,15 @@ const ProductsProvider = ({ children }) => {
 
     const textFiltered = state.search?.length > 0 ? [...operation_data].filter(({ type, brand, name }) => name.toLowerCase().includes(state.search.toLowerCase()) || brand.toLowerCase().includes(state.search.toLowerCase()) || type.toLowerCase().includes(state.search.toLowerCase())) : [...operation_data];
 
-    const priceFiltered = state.price > 0 ? [...textFiltered].filter(({ price }) => price <= state.price) : [...textFiltered];
+    const priceFiltered = state.price > 0 ? [...textFiltered].filter(({ price }) => state.price >= price) : [...textFiltered];
 
-    // const sneakerCategoryFiltered = state.sneakers === true ? [...priceFiltered].filter(({ type }) => type.toLowerCase() === "sneaker") : [...priceFiltered];
-
-    // const runningCategoryFiltered = state.running === true ? [...sneakerCategoryFiltered].filter(({ type }) => type.toLowerCase() === "running") : [...sneakerCategoryFiltered];
-
-    // const casualCategoryFiltered = state.casual === true ? [...runningCategoryFiltered].filter(({ type }) => type.toLowerCase() === "casual") : [...runningCategoryFiltered];
-
-    const filteredData = operation_data.filter(({ type, rating }) => {
-        const isSneakerFiltered = !state.sneakers || type.toLowerCase() === "sneaker";
-        const isRunningFiltered = !state.running || type.toLowerCase() === "running";
-        const isCasualFiltered = !state.casual || type.toLowerCase() === "casual";
-        const isRatingFiltered = !state.ratings || rating >= state.ratings;
-
-        return (state.sneakers && state.running && state.casual) || (isSneakerFiltered && isRunningFiltered && isCasualFiltered && isRatingFiltered);
-    });
+    const categoryFiltered = state.category.length > 0 ? [...priceFiltered].filter(({ type }) => state.category.includes(type)) : [...priceFiltered]
 
 
+    const ratingFiltered = typeof state.rating === 'number'
+        ? [...categoryFiltered].filter(({ rating }) => rating >= state.rating)
+        : [...categoryFiltered];
 
-    const ratingFiltered = state.ratings === true ? [...filteredData].filter(({ rating }) => rating >= state.ratings) : [...filteredData];
 
     const htlFiltered = state.sort.toLowerCase() === "htl" ? ([...ratingFiltered].sort((item1, item2) => item2.price - item1.price)) : [...ratingFiltered];
 
