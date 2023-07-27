@@ -17,7 +17,7 @@ const SearchBar = () => {
       <div className=" w-[80%] md:w-[40%] flex justify-center items-center rounded ">
         <input
           type="text"
-          placeholder="Search for the Product"
+          placeholder="Search for the Product or Brand"
           className=" w-[100%] py-1 px-2 focus:border-2 focus:border-bgPrimary  border-2 rounded-md text-bgPrimary"
           onChange={(e) => handleSearchChange(e.target.value)}
         />

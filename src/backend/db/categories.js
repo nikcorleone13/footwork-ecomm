@@ -8,7 +8,7 @@ import { v4 as uuid } from "uuid";
 export const categories = [
   {
     _id: uuid(),
-    categoryName: "sneakers",
+    categoryName: "sneaker",
     description:
       "Style meets comfort to express your unique personality with every step.",
     imgDesktop:

@@ -3,8 +3,11 @@ import { FaFilter } from "react-icons/fa";
 import { MdClose } from "react-icons/md";
 import { ProductsContext } from "../../../Contexts/ProductsContext/ProductsContext";
 const FilterBar = () => {
-  const { all_data, dispatch } = useContext(ProductsContext);
+  const { products, all_data, dispatch } = useContext(ProductsContext);
 
+  const [sneaker, setSneaker] = useState();
+  const [running, setRunning] = useState();
+  const [casual, setCasual] = useState();
   const [filterBar, setFilterBar] = useState(false);
   const [price, setPrice] = useState(all_data.price);
   const [htl, setHTL] = useState(false);
@@ -64,8 +67,22 @@ const FilterBar = () => {
       setFourStar(true);
     }
   };
+
+  const handleFiltersReset = () => {
+    setSneaker(false);
+    setRunning(false);
+    setCasual(false);
+    setFilterBar(false);
+    setPrice(false);
+    setHTL(false);
+    setLTH(false);
+    setOneStar(false);
+    setTwoStar(false);
+    setThreeStar(false);
+    setFourStar(false);
+  };
   return (
-    <div className=" w-screen md:w-[25%] md:h-screen flex flex-col items-left justify-start md:p-2 text-bgPrimary  md:bg-bgPrimary md:text-lightText border-b-2 ">
+    <div className=" w-screen md:w-[25%] md:h-auto flex flex-col items-left justify-start md:p-2 text-bgPrimary  md:bg-bgPrimary md:text-lightText border-b-2 ">
       <FaFilter
         className="md:hidden pl-2 mt-2"
         onClick={() => setFilterBar(true)}
@@ -78,9 +95,10 @@ const FilterBar = () => {
           </p>
           <p
             className=" underline hover:cursor-pointer hover:text-red-500 md:mb-2"
-            onClick={() =>
-              dispatch({ type: "INITIAL_API_DATA", payload: all_data })
-            }
+            onClick={() => {
+              dispatch({ type: "INITIAL_API_DATA", payload: [...products] });
+              handleFiltersReset();
+            }}
           >
             Reset Filters
           </p>
@@ -93,7 +111,9 @@ const FilterBar = () => {
               <div className="mt-1 w-[40%] md:w-[50%] flex justify-between items-center  ">
                 <p>Sneakers</p>
                 <input
+                  className="cursor-pointer"
                   type="checkbox"
+                  checked={sneaker}
                   onChange={() =>
                     dispatch({ type: "CATEGORY", payload: "sneaker" })
                   }
@@ -102,7 +122,9 @@ const FilterBar = () => {
               <div className="mt-1 w-[40%] md:w-[50%] flex justify-between items-center  ">
                 <p>Running</p>
                 <input
+                  className="cursor-pointer"
                   type="checkbox"
+                  checked={running}
                   onChange={() =>
                     dispatch({ type: "CATEGORY", payload: "running" })
                   }
@@ -111,7 +133,9 @@ const FilterBar = () => {
               <div className="mt-1 w-[40%] md:w-[50%] flex justify-between items-center  ">
                 <p>Casual</p>
                 <input
+                  className="cursor-pointer"
                   type="checkbox"
+                  checked={casual}
                   onChange={() =>
                     dispatch({ type: "CATEGORY", payload: "casual" })
                   }
@@ -128,12 +152,12 @@ const FilterBar = () => {
               Rs:<span className="mx-2">{price}</span>
             </label>
             <input
+              className="cursor-pointer ml-2 "
               value={price}
               type="range"
-              min="100"
+              min="500"
               max="30000"
               onChange={(e) => handleRange(e.target.value)}
-              className="ml-2"
             />
           </div>
 
@@ -144,6 +168,7 @@ const FilterBar = () => {
               <div className="mt-1 w-[40%] md:w-[50%] flex justify-between items-center  ">
                 <p>High-to-Low</p>
                 <input
+                  className="cursor-pointer"
                   type="checkbox"
                   checked={htl}
                   onChange={() => handleSorting("HTL")}
@@ -152,6 +177,7 @@ const FilterBar = () => {
               <div className="mt-1 w-[40%] md:w-[50%] flex justify-between items-center  ">
                 <p>Low-to-High</p>
                 <input
+                  className="cursor-pointer"
                   type="checkbox"
                   checked={lth}
                   onChange={() => handleSorting("LTH")}
@@ -167,6 +193,7 @@ const FilterBar = () => {
               <div className="mt-1 w-[60%] flex justify-between items-center  ">
                 <p>1 star & above </p>
                 <input
+                  className="cursor-pointer"
                   type="checkbox"
                   checked={oneStar}
                   onChange={() => handleRatingFilter(1)}
@@ -175,6 +202,7 @@ const FilterBar = () => {
               <div className="mt-1 w-[60%] flex justify-between items-center  ">
                 <p>2 star & above </p>
                 <input
+                  className="cursor-pointer"
                   type="checkbox"
                   checked={twoStar}
                   onChange={() => handleRatingFilter(2)}
@@ -183,6 +211,7 @@ const FilterBar = () => {
               <div className="mt-1 w-[60%] flex justify-between items-center  ">
                 <p>3 star & above </p>
                 <input
+                  className="cursor-pointer"
                   type="checkbox"
                   checked={threeStar}
                   onChange={() => handleRatingFilter(3)}
@@ -191,6 +220,7 @@ const FilterBar = () => {
               <div className="mt-1 w-[60%] flex justify-between items-center  ">
                 <p>4 star & above </p>
                 <input
+                  className="cursor-pointer"
                   type="checkbox"
                   checked={fourStar}
                   onChange={() => handleRatingFilter(4)}
@@ -218,6 +248,7 @@ const FilterBar = () => {
                 <div className="mt-1 w-[40%] md:w-[50%] flex justify-between items-center  ">
                   <p>Sneakers</p>
                   <input
+                    className="cursor-pointer"
                     type="checkbox"
                     onChange={() =>
                       dispatch({ type: "CATEGORY", payload: "sneaker" })
@@ -227,6 +258,7 @@ const FilterBar = () => {
                 <div className="mt-1 w-[40%] md:w-[50%] flex justify-between items-center  ">
                   <p>Running</p>
                   <input
+                    className="cursor-pointer"
                     type="checkbox"
                     onChange={() =>
                       dispatch({ type: "CATEGORY", payload: "running" })
@@ -236,6 +268,7 @@ const FilterBar = () => {
                 <div className="mt-1 w-[40%] md:w-[50%] flex justify-between items-center  ">
                   <p>Casual</p>
                   <input
+                    className="cursor-pointer"
                     type="checkbox"
                     onChange={() =>
                       dispatch({ type: "CATEGORY", payload: "casual" })
@@ -254,12 +287,12 @@ const FilterBar = () => {
                 Rs:<span className="mx-2">{price}</span>
               </label>
               <input
+                className="cursor-pointer ml-2"
                 type="range"
                 value={price}
                 min="100"
                 max="30000"
                 onChange={(e) => handleRange(e.target.value)}
-                className="ml-2"
               />{" "}
             </div>
 
@@ -270,6 +303,7 @@ const FilterBar = () => {
                 <div className="mt-1 w-[40%] md:w-[50%] flex justify-between items-center  ">
                   <p>High-to-Low</p>
                   <input
+                    className="cursor-pointer"
                     type="checkbox"
                     checked={htl}
                     onChange={() => handleSorting("HTL")}
@@ -278,6 +312,7 @@ const FilterBar = () => {
                 <div className="mt-1 w-[40%] md:w-[50%] flex justify-between items-center  ">
                   <p>Low-to-High</p>
                   <input
+                    className="cursor-pointer"
                     type="checkbox"
                     checked={lth}
                     onChange={() => handleSorting("LTH")}
@@ -293,6 +328,7 @@ const FilterBar = () => {
                 <div className="mt-1 w-[60%] flex justify-between items-center  ">
                   <p>1 star and above </p>
                   <input
+                    className="cursor-pointer"
                     type="checkbox"
                     checked={oneStar}
                     onChange={() => handleRatingFilter(1)}
@@ -301,6 +337,7 @@ const FilterBar = () => {
                 <div className="mt-1 w-[60%] flex justify-between items-center  ">
                   <p>2 star and above </p>
                   <input
+                    className="cursor-pointer"
                     type="checkbox"
                     checked={twoStar}
                     onChange={() => handleRatingFilter(2)}
@@ -309,6 +346,7 @@ const FilterBar = () => {
                 <div className="mt-1 w-[60%] flex justify-between items-center  ">
                   <p>3 star and above </p>
                   <input
+                    className="cursor-pointer"
                     type="checkbox"
                     checked={threeStar}
                     onChange={() => handleRatingFilter(3)}
@@ -317,6 +355,7 @@ const FilterBar = () => {
                 <div className="mt-1 w-[60%] flex justify-between items-center  ">
                   <p>4 star and above </p>
                   <input
+                    className="cursor-pointer"
                     type="checkbox"
                     checked={fourStar}
                     onChange={() => handleRatingFilter(4)}

@@ -28,7 +28,7 @@ const Categories = ({ data }) => {
               return (
                 <Link
                   onClick={() =>
-                    dispatch({ type: { categoryName }, payload: "" })
+                    dispatch({ type: "CATEGORY", payload: `${categoryName}` })
                   }
                   to={address}
                   key={_id}

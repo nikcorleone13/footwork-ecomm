@@ -40,27 +40,27 @@ const ProductsProvider = ({ children }) => {
 
     const textFiltered = state.search?.length > 0 ? [...operation_data].filter(({ type, brand, name }) => name.toLowerCase().includes(state.search.toLowerCase()) || brand.toLowerCase().includes(state.search.toLowerCase()) || type.toLowerCase().includes(state.search.toLowerCase())) : [...operation_data];
 
-    const priceFiltered = state.price > 0 ? [...textFiltered].filter(({ price }) => state.price >= price) : [...textFiltered];
+    const priceFiltered = state.price > 0 ? [...textFiltered].filter(({ price }) => Number(state.price) >= Number(price)) : [...textFiltered];
 
     const categoryFiltered = state.category.length > 0 ? [...priceFiltered].filter(({ type }) => state.category.includes(type)) : [...priceFiltered]
 
 
     const ratingFiltered = typeof state.rating === 'number'
-        ? [...categoryFiltered].filter(({ rating }) => rating >= state.rating)
+        ? [...categoryFiltered].filter(({ rating }) => rating >= Number(state.rating))
         : [...categoryFiltered];
 
 
-    const htlFiltered = state.sort.toLowerCase() === "htl" ? ([...ratingFiltered].sort((item1, item2) => item2.price - item1.price)) : [...ratingFiltered];
+    const htlFiltered = state.sort.toLowerCase() === "htl" ? ([...ratingFiltered].sort((item1, item2) => Number(item2.price) - Number(item1.price))) : [...ratingFiltered];
 
-    const lthFiltered = state.sort.toLowerCase() === "lth" ? ([...ratingFiltered].sort((item1, item2) => item1.price - item2.price)) : [...ratingFiltered];
-
-
-    console.log("FILTERS", lthFiltered);
+    const lthFiltered = state.sort.toLowerCase() === "lth" ? ([...ratingFiltered].sort((item1, item2) => Number(item1.price) - Number(item2.price))) : [...ratingFiltered];
 
 
+    // console.log("FILTERS", lthFiltered);
 
 
-    return <ProductsContext.Provider value={{ all_data: state, dispatch: dispatch, }}>{children}</ProductsContext.Provider>;
+
+
+    return <ProductsContext.Provider value={{ products: [...products], all_data: state, dispatch: dispatch, final_data: lthFiltered }}>{children}</ProductsContext.Provider>;
 };
 
 export default ProductsProvider;
