@@ -9,7 +9,8 @@
 }
 .home-background-div{
     background-image: url('../../../images/hero/hero-desktop.jpg');
+    filter: opacity(85%) ;
     background-size: cover;
     background-position-y:20% ;
-    background-position:right;
+    background-position:bottom;
 }

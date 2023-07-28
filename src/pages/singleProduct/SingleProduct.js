@@ -125,14 +125,14 @@ const SingleProduct = () => {
                           <option value="13">13 UK</option>
                         </select>
                       </div>
-                      <div className=" my-4 flex justify-between">
-                        <div className="w-[40%] flex items-center justify-center border-2 rounded-md py-2 text-lg bg-yellow-500 text-lightText border-yellow-500 cursor-pointer">
+                      <div className=" my-4 flex justify-between uppercase">
+                        <div className="w-[45%] flex items-center justify-center border-2 rounded-md py-2 text-lg bg-yellow-500 text-lightText border-yellow-500 cursor-pointer">
                           Add to Wishlist{" "}
                           <span className="ml-2">
                             <FaHeart />{" "}
                           </span>
                         </div>
-                        <div className="w-[40%] flex items-center justify-center border-2 rounded-md py-2 text-lg bg-green-500 text-lightText border-green-500 cursor-pointer">
+                        <div className="w-[45%] flex items-center justify-center border-2 rounded-md py-2 text-lg bg-green-500 text-lightText border-green-500 cursor-pointer">
                           Add to Cart{" "}
                           <span className="ml-2">
                             <FaCartPlus />{" "}
@@ -166,7 +166,7 @@ const SingleProduct = () => {
                     <option value="13">13 UK</option>
                   </select>
                 </div>
-                <div className="my-6 flex justify-evenly ">
+                <div className="my-6 flex justify-evenly uppercase ">
                   <div className="w-[45%] flex items-center justify-center border-2 rounded-md py-2 text-lg bg-yellow-500 text-lightText border-yellow-500 cursor-pointer">
                     Add to Wishlist{" "}
                     <span className="ml-2">

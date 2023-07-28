@@ -82,7 +82,10 @@ const FilterBar = () => {
     setFourStar(false);
   };
   return (
-    <div className=" w-screen md:w-[25%] md:h-auto flex flex-col items-left justify-start md:p-2 text-bgPrimary  md:bg-bgPrimary md:text-lightText border-b-2 ">
+    <div
+      style={{ position: "sticky", top: 0, zIndex: 100 }}
+      className=" w-screen md:w-[25%] md:h-screen flex flex-col items-left justify-start md:p-2 text-bgPrimary  md:bg-bgPrimary md:text-lightText border-b-2 "
+    >
       <FaFilter
         className="md:hidden pl-2 mt-2"
         onClick={() => setFilterBar(true)}

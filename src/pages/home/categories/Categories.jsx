@@ -32,7 +32,7 @@ const Categories = ({ data }) => {
                   }
                   to={address}
                   key={_id}
-                  className=" border-2 my-8 md:my-16 w-[100%] flex flex-col md:flex-row justify-center items-center md:hover:bg-bgPrimary md:hover:text-lightText duration-200 ease-in-out md:hover:scale-105  "
+                  className=" border-2 my-8 md:my-16 w-[100%] flex flex-col md:flex-row justify-center items-center md:hover:bg-bgPrimary md:hover:text-lightText duration-200"
                 >
                   <div
                     className="w-[100%] h-[250px] md:w-[60%] md:h-[300px]"

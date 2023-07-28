@@ -8,11 +8,8 @@ import { SiLinkedin } from "react-icons/si";
 
 export const Footer = () => {
   return (
-    <div className="bg-bgPrimary text-lightText  w-full flex flex-col justify-center items-center content-center bg-primaryMobile  text-textPrimaryMobile  pt-10 ">
+    <div className="bg-bgPrimary text-lightText  w-full flex flex-col justify-center items-center content-center bg-primaryMobile  text-textPrimaryMobile  pt-6 ">
       <div className="w-max text-2xl md:text-3xl  ">
-        <h1 className="text-3xl font-extrabold border-b-4 border-lightTextDark  p-2">
-          Connect with me!
-        </h1>
         <p className="text-base  pt-6">
           Discover the Perfect Pair to Elevate Your Style
         </p>

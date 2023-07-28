@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-
-import { FaBars } from "react-icons/fa";
-import { FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { FaHeart } from "react-icons/fa";
-import { FaShoppingCart } from "react-icons/fa";
-import { FaUserAlt } from "react-icons/fa";
-import { IoFootstepsSharp } from "react-icons/io5";
+import {
+  FaBars,
+  FaTimes,
+  FaHeart,
+  FaUserAlt,
+  FaShoppingCart,
+  FaCompass,
+} from "react-icons/fa";
+import {} from "react-icons/fa";
+import { GiFootprint } from "react-icons/gi";
 
 export const Navbar = () => {
   const [nav, setNav] = useState(true);
@@ -15,36 +18,42 @@ export const Navbar = () => {
       <div className="text-3xl md:text-5xl font-heading uppercase ">
         <Link
           to="/"
-          className="flex justify-center items-center cursor-pointer"
+          className="flex justify-center items-center cursor-pointer tracking-wide "
         >
           Footwork
-          <span className="px-1">
-            <IoFootstepsSharp />
-          </span>
         </Link>
       </div>
 
-      <div className="hidden md:flex justify-center md:text-2xl">
+      <div className="md:w-[20%] hidden md:flex justify-between md:text-3xl md:mr-8 ">
         <p className=" px-3 cursor-pointer capitalize font-bolder flex justify-center items-center hover:text-lightTextDark  ">
-          <Link to="/products"> Products </Link>
+          <Link to="/products">
+            {" "}
+            <FaCompass />{" "}
+          </Link>
         </p>
         <p className=" px-3 cursor-pointer capitalize font-bolder flex justify-center items-center hover:text-lightTextDark  ">
-          <Link to="/wishlist"> </Link>
-          <span className="p-2">
-            <FaHeart size={20} />
-          </span>
+          <Link to="/wishlist">
+            {" "}
+            <span className="p-2">
+              <FaHeart />
+            </span>
+          </Link>
         </p>
         <p className="px-3 cursor-pointer font-bolder flex justify-center items-center hover:text-lightTextDark">
-          <Link to="/cart"> </Link>
-          <span className="p-2">
-            <FaShoppingCart size={20} />
-          </span>
+          <Link to="/cart">
+            {" "}
+            <span className="p-2">
+              <FaShoppingCart />
+            </span>
+          </Link>
         </p>
         <p className=" px-3 cursor-pointer font-bolder flex justify-center items-center hover:text-lightTextDark">
-          <Link to="/profile"> </Link>
-          <span className="p-2">
-            <FaUserAlt size={20} />
-          </span>
+          <Link to="/profile">
+            {" "}
+            <span className="p-2">
+              <FaUserAlt />
+            </span>
+          </Link>
         </p>
       </div>
 

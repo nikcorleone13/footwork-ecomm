@@ -9,6 +9,9 @@ import Products from "./pages/products/Products";
 import SingleProduct from "./pages/singleProduct/SingleProduct";
 import Cart from "./pages/cart/Cart";
 import Wishlist from "./pages/wishlist/Wishlist";
+import RequiresAuth from "./Contexts/AuthContext/RequiresAuth";
+import Login from "./pages/login/Login";
+import Profile from "./pages/profile/Profile";
 
 function App() {
   return (
@@ -19,10 +22,24 @@ function App() {
         <Route path="/mockman" element={<MockAPI />} />
         {/* page routes */}
         <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/products" element={<Products />} />
         <Route path="/products/:productId" element={<SingleProduct />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="/cart" element={
+          <RequiresAuth>
+            <Cart />
+          </RequiresAuth>
+        } />
+        <Route path="/wishlist" element={
+          <RequiresAuth>
+            <Wishlist />
+          </RequiresAuth>
+        } />
+        <Route path="/profile" element={
+          <RequiresAuth>
+            <Profile />
+          </RequiresAuth>
+        } />
       </Routes>
     </div>
   );

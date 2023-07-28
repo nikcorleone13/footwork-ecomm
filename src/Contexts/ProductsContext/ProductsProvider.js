@@ -50,9 +50,11 @@ const ProductsProvider = ({ children }) => {
         : [...categoryFiltered];
 
 
-    const htlFiltered = state.sort.toLowerCase() === "htl" ? ([...ratingFiltered].sort((item1, item2) => Number(item2.price) - Number(item1.price))) : [...ratingFiltered];
+    // const htlFiltered = state.sort.toLowerCase() === "htl" ? ([...ratingFiltered].sort((item1, item2) => Number(item2.price) - Number(item1.price))) : [...ratingFiltered];
 
-    const lthFiltered = state.sort.toLowerCase() === "lth" ? ([...ratingFiltered].sort((item1, item2) => Number(item1.price) - Number(item2.price))) : [...ratingFiltered];
+    // const lthFiltered = state.sort.toLowerCase() === "lth" ? ([...htlFiltered].sort((item1, item2) => Number(item1.price) - Number(item2.price))) : [...ratingFiltered];
+
+    const sortPrice = state.sort.length > 0 ? [...ratingFiltered].sort((item1, item2) => state.sort.toLowerCase() === "htl" ? item1?.price - item2?.price : item2?.price - item1?.price) : [...ratingFiltered]
 
 
     // console.log("FILTERS", lthFiltered);
@@ -60,7 +62,7 @@ const ProductsProvider = ({ children }) => {
 
 
 
-    return <ProductsContext.Provider value={{ products: [...products], all_data: state, dispatch: dispatch, final_data: lthFiltered }}>{children}</ProductsContext.Provider>;
+    return <ProductsContext.Provider value={{ products: [...products], all_data: state, dispatch: dispatch, final_data: sortPrice }}>{children}</ProductsContext.Provider>;
 };
 
 export default ProductsProvider;

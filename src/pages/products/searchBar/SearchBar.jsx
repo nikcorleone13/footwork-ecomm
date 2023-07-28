@@ -13,7 +13,7 @@ const SearchBar = () => {
     dispatch({ type: "SEARCH", payload: text });
   };
   return (
-    <div className="py-6 md:py-8 flex justify-center items-center border-b-2  ">
+    <div className=" bg-white py-6 md:py-8 flex justify-center items-center border-b-2  ">
       <div className=" w-[80%] md:w-[40%] flex justify-center items-center rounded ">
         <input
           type="text"
