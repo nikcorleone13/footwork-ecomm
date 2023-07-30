@@ -9,10 +9,10 @@ import { FaCartPlus, FaHeart, FaStar } from "react-icons/fa";
 
 const SingleProduct = () => {
   const [prodId, setProdId] = useState("");
-  const [showItem, setShowItem] = useState(); // Initialize with null to indicate it hasn't been fetched yet
+  const [showItem, setShowItem] = useState(null); 
   const [loader, setLoader] = useState(false);
   const [currImg, setCurrImg] = useState();
-  const [selectedValue, setSelectedValue] = useState("");
+  const [selectedValue, setSelectedValue] = useState("5");
   //   context and params data
   const { productId } = useParams();
 
