@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, {  useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { ProductsContext } from "../../Contexts/ProductsContext/ProductsContext";
 import Navbar from "../../components/Navbar";
 import { get_Single_Item_API } from "../../apiServices/SingleItem";
 import { Loader } from "../../components/loadingScreen/Loader";
@@ -16,12 +15,13 @@ const SingleProduct = () => {
   //   context and params data
   const { productId } = useParams();
 
-  localStorage.setItem("item_id", productId);
+  
   useEffect(() => {
     if (!prodId) {
+      localStorage.setItem("item_id", productId);
       const itemId = localStorage.getItem("item_id");
+      setProdId(itemId);
     }
-    // Set productId in localStorage during initial render
 
     // API Call
     const fetchSingleItem = async (productId) => {
@@ -60,19 +60,21 @@ const SingleProduct = () => {
               <>
                 <div className=" p-4 md:p-1 md:w-[60%] h-[70%] md:h-[95%] flex flex-col justify-between items-center">
                   <img
-                    src={currImg || showItem?.img[0]}
-                    className="w-[100%] h-[80%] md:w-[100%] md:h-[80%]  md:hover:scale-[125%] duration-200 object-scale-down        "
+                    src={currImg || showItem?.img[0]} alt="main-item"
+                    className="w-[100%] h-[80%] md:w-[100%] md:h-[80%]  md:hover:scale-[125%] duration-200 object-scale-down"
+                    
                   />
                   <div className="h-[25%] w-[100%] md:w-[70%]  flex justify-evenly p-1 gap-1">
                     {showItem?.img.map((item) => {
                       return (
-                        <>
                           <img
-                            src={item}
-                            className="border-2 h-[100%] w-[25%] object-cover md:cursor-pointer  "
-                            onClick={() => setCurrImg(item)}
+                          key={item.id}
+                          src={item}
+                          className="border-2 h-[100%] w-[25%] object-cover md:cursor-pointer  "
+                          onClick={() => setCurrImg(item)}
+                          alt={item.id}
+                          style={currImg === item ? { border: "2px solid #1f2b33" } : { border: "none" }}
                           />
-                        </>
                       );
                     })}
                   </div>

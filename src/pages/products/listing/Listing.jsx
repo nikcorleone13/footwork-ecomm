@@ -1,15 +1,32 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link,useNavigate } from "react-router-dom";
 import FilterBar from "../filtersection/FilterBar";
 import { FaCartPlus, FaHeart } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
 import { FaRupeeSign } from "react-icons/fa";
+import { AuthContext } from "../../../Contexts/AuthContext/AuthContext";
+
 const Listing = (data) => {
   const [showData, setShowData] = useState(data.data);
-  console.log("products context in component", data.data);
+  const {userToken } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  // adding item to wishlist
+  const handle_Wishlist_Item = (item) => {
+    
+      console.log("ITEM to add", item);
+      console.log("Token value", userToken);
+      !userToken && navigate("/wishlist");
+
+      console.log("Redirecting.....")
+  };
+ 
+ 
   useEffect(() => {
     setShowData(data.data);
   }, [data.data]);
+
+ 
   return (
     <div className="h-full ">
       <div className="flex flex-col md:flex-row relative ">
@@ -24,26 +41,31 @@ const Listing = (data) => {
             {showData.map((item) => {
               return (
                 // container div
-                <Link
-                  to={`/products/${item._id}`}
+                <div
                   key={item._id}
                   className="h-full w-[350px] flex flex-col items-center   relative m-4 border-2 border-bgPrimary rounded-lg p-1 md:hover:border-[#00ff6a]"
                 >
+                  <FaHeart
+                    size={25}
+                    className="absolute right-2 top-2 text-gray-500 hover:text-red-700 cursor-pointer "
+                    onClick={() => handle_Wishlist_Item(item)}
+                  />
                   {/* image */}
-                  <div
-                    style={{
-                      backgroundImage: `url(${item.img[0]})`,
-                      backgroundSize: "cover",
-                      backgroundPosition: "center center",
-                      backgroundRepeat: "no-repeat",
-                    }}
+                  <Link
+                    to={`/products/${item._id}`}
                     className="w-[100%] h-[250px]"
                   >
-                    <FaHeart
-                      size={25}
-                      className="absolute right-2 top-2 text-gray-500 hover:text-red-700 cursor-pointer "
-                    />
-                  </div>
+                    <div
+                      style={{
+                        backgroundImage: `url(${item.img[0]})`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center center",
+                        backgroundRepeat: "no-repeat",
+                      }}
+                      className="w-[100%] h-[250px]"
+                    ></div>
+                  </Link>
+
                   {/* cta buttons div */}
                   <div className=" w-[100%] relative flex flex-col justify-start items-start p-2 ">
                     {" "}
@@ -53,7 +75,7 @@ const Listing = (data) => {
                       <FaStar className="ml-1" />
                     </p>
                     <p className="text-gray-700">{item.brand}</p>
-                    <p className="text-xl flex items-center">
+                    <p className="text-base  flex items-center">
                       <FaRupeeSign />
                       <span className="font-semibold "> {item.price}</span>
                     </p>
@@ -62,7 +84,7 @@ const Listing = (data) => {
                       Add to Cart
                     </div>
                   </div>
-                </Link>
+                </div>
               );
             })}
           </div>

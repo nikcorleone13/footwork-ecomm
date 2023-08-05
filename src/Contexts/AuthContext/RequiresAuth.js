@@ -1,14 +1,15 @@
-import React, { useContext } from 'react'
-import { AuthContext } from './AuthContext'
-import { Navigate } from 'react-router-dom';
+import React from 'react'
+import { Navigate, useLocation } from 'react-router-dom';
 
 const RequiresAuth = ({ children }) => {
 
-    const { logged_In } = useContext(AuthContext);
-    console.log("Loged in", logged_In)
+    let location = useLocation();
+    const user_Token = sessionStorage.getItem("access_token");
+    console.log("Token found", user_Token)
 
-    return logged_In ? (children) : (
-        <Navigate to="/login" />
+
+    return user_Token ? (children) : (
+        <Navigate to="/login" state={{ from: location }}  />
     )
 
 }

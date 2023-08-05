@@ -16,8 +16,6 @@ import Profile from "./pages/profile/Profile";
 function App() {
   return (
     <div className="App">
-
-
       <Routes>
         <Route path="/mockman" element={<MockAPI />} />
         {/* page routes */}

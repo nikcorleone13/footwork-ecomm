@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "dayjs": "^1.11.9",
+    "js-cookie": "^3.0.5",
+    "js-cookies": "^1.0.4",
     "jwt-decode": "^3.1.2",
     "jwt-encode": "^1.0.1",
     "miragejs": "^0.1.47",
