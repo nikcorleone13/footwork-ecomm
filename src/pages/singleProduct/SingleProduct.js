@@ -1,10 +1,14 @@
-import React, {  useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, {  useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import { get_Single_Item_API } from "../../apiServices/SingleItem";
 import { Loader } from "../../components/loadingScreen/Loader";
 import { BiRupee } from "react-icons/bi";
 import { FaCartPlus, FaHeart, FaStar } from "react-icons/fa";
+import { wishlist_add_API } from "../../apiServices/Wishlist";
+import { WishlistContext } from "../../Contexts/Wishlist/WishlistContext";
+import { CartContext } from "../../Contexts/Cart/CartContext";
+import { cart_add_API } from "../../apiServices/Cart";
 
 const SingleProduct = () => {
   const [prodId, setProdId] = useState("");
@@ -12,9 +16,11 @@ const SingleProduct = () => {
   const [loader, setLoader] = useState(false);
   const [currImg, setCurrImg] = useState();
   const [selectedValue, setSelectedValue] = useState("5");
+  const {wishlist,handleWishlist} = useContext(WishlistContext);
+  const {cart,updateCart} = useContext(CartContext);
   //   context and params data
   const { productId } = useParams();
-
+  const navigate = useNavigate();
   
   useEffect(() => {
     if (!prodId) {
@@ -45,6 +51,61 @@ const SingleProduct = () => {
   // handle size change
   const handleChange = (e) => {
     setSelectedValue(e.target.value);
+  };
+
+
+  // add wihslist
+  const handle_Add_Wishlist_Item = (item) =>{
+    // console.log("WISHLIST CONTEXT", wishlist);
+    const token = sessionStorage.getItem("access_token");
+    // token not found
+    if (!token) {
+      navigate("/wishlist");
+    }
+
+    // tooken found
+    else {
+      const ob = wishlist.filter((obj) => obj._id === item._id);
+      console.log("FOUND", ob);
+      // api call to add
+      if (ob.length > 0) {
+        console.log("ITEM in wishlist");
+      } else {
+        wishlist_add_API(item, token).then((response) => {
+          console.log("Wishlist item data received", response.wishlist);
+          handleWishlist([...response.wishlist]);
+        });
+      }
+    }
+  };
+
+
+  // add to cart
+
+  const handle_Add_Cart_Item = (item) =>{
+    console.log("Item to cart", item);
+    console.log("COntext", cart);
+
+    const token = sessionStorage.getItem("access_token");
+    // token not found
+    if (!token) {
+      navigate("/cart");
+    }
+
+    // tooken found
+    else {
+      const ob = cart.filter((obj) => obj._id === item._id);
+      console.log("FOUND", ob);
+      // api call to add
+      if (ob.length > 0) {
+        // console.log("ITEM in wishlist");
+      } else {
+        cart_add_API(item, token).then((response) => {
+          console.log("Cart item data received", response.cart);
+          updateCart([...response.cart]);
+        });
+      }
+    }
   };
 
   return (
@@ -128,13 +189,13 @@ const SingleProduct = () => {
                         </select>
                       </div>
                       <div className=" my-4 flex justify-between uppercase">
-                        <div className="w-[45%] flex items-center justify-center border-2 rounded-md py-2 text-lg bg-yellow-500 text-lightText border-yellow-500 cursor-pointer">
+                        <div className="w-[45%] flex items-center justify-center border-2 rounded-md py-2 text-lg bg-yellow-500 text-lightText border-yellow-500 cursor-pointer" onClick={() => handle_Add_Wishlist_Item(showItem)}>
                           Add to Wishlist{" "}
                           <span className="ml-2">
                             <FaHeart />{" "}
                           </span>
                         </div>
-                        <div className="w-[45%] flex items-center justify-center border-2 rounded-md py-2 text-lg bg-green-500 text-lightText border-green-500 cursor-pointer">
+                        <div className="w-[45%] flex items-center justify-center border-2 rounded-md py-2 text-lg bg-green-500 text-lightText border-green-500 cursor-pointer"  onClick={() => handle_Add_Cart_Item(showItem)} >
                           Add to Cart{" "}
                           <span className="ml-2">
                             <FaCartPlus />{" "}
@@ -169,13 +230,13 @@ const SingleProduct = () => {
                   </select>
                 </div>
                 <div className="my-6 flex justify-evenly uppercase ">
-                  <div className="w-[45%] flex items-center justify-center border-2 rounded-md py-2 text-lg bg-yellow-500 text-lightText border-yellow-500 cursor-pointer">
+                  <button className="w-[45%] flex items-center justify-center border-2 rounded-md py-2 text-lg bg-yellow-500 text-lightText border-yellow-500 cursor-pointer" onClick={() => handle_Add_Wishlist_Item(showItem)}>
                     Add to Wishlist{" "}
                     <span className="ml-2">
                       <FaHeart />{" "}
                     </span>
-                  </div>
-                  <div className="w-[45%] flex items-center justify-center border-2 rounded-md py-2 text-lg bg-green-500 text-lightText border-green-500 cursor-pointer">
+                  </button>
+                  <div className="w-[45%] flex items-center justify-center border-2 rounded-md py-2 text-lg bg-green-500 text-lightText border-green-500 cursor-pointer"  onClick={() => handle_Add_Cart_Item(showItem)} >
                     Add to Cart{" "}
                     <span className="ml-2">
                       <FaCartPlus />{" "}

@@ -31,6 +31,7 @@ const Login = () => {
       // resolve promise
       loginAPI(email, password)
         .then((response) => {
+          sessionStorage.setItem("apiResponse", response)
             const apiToken =  response.encodedToken;
             const apiUser = response.foundUser;
           console.log("TOKEN received from Login",apiToken);
@@ -50,7 +51,7 @@ const Login = () => {
           setAuthToken(sessionStorage.getItem("access_token"));
           setUserData(sessionStorage.getItem("user_info"));
 
-          changeLogin(response);
+          changeLogin();
         })
         .catch((error) => {
           console.log("Error:", error);

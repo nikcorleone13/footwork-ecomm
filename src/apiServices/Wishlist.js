@@ -7,7 +7,7 @@ export const wishlist_get_API = async(encodedToken) =>{
               },
         })
         const resBody = await res?.json();
-        console.log("Response from Wishlist GET", resBody); 
+        // console.log("Response from Wishlist GET", resBody); 
         return resBody.wishlist
          
     } catch (error) {
@@ -30,7 +30,8 @@ export const wishlist_add_API = async (item,encodedToken) =>{
               }),
         })
         const resBody = await res?.json();
-        console.log("Response from Wishlist ADD item", resBody); 
+        // console.log("Wishlist ADD item", resBody); 
+        return resBody;
 
     } catch (error) {
         console.error(error);
@@ -39,7 +40,7 @@ export const wishlist_add_API = async (item,encodedToken) =>{
 
 // delete item from wishlist
 
-export const wishlist_delete_API = async (productId,encodedToken) =>{
+export const wishlist_delete_API = async (productId,{encodedToken}) =>{
     try {
         const res = await fetch(`/api/user/wishlist/${productId}`,{
             method:"DELETE",
@@ -49,8 +50,8 @@ export const wishlist_delete_API = async (productId,encodedToken) =>{
             }
         })
         const resBody = await res?.json();
-        console.log("Response from Wishlist DELETE item", resBody); 
-
+        // console.log("Response from Wishlist DELETE item", resBody); 
+        return resBody.wishlist
     } catch (error) {
         console.error(error);
     }

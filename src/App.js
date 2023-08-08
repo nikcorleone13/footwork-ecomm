@@ -3,6 +3,8 @@ import "./App.css";
 import MockAPI from "./Mockman";
 
 
+
+
 // pages import
 import Home from './pages/home/Home';
 import Products from "./pages/products/Products";
@@ -12,6 +14,7 @@ import Wishlist from "./pages/wishlist/Wishlist";
 import RequiresAuth from "./Contexts/AuthContext/RequiresAuth";
 import Login from "./pages/login/Login";
 import Profile from "./pages/profile/Profile";
+import OrderSummary from "./pages/summary/OrderSummary";
 
 function App() {
   return (
@@ -36,6 +39,11 @@ function App() {
         <Route path="/profile" element={
           <RequiresAuth>
             <Profile />
+          </RequiresAuth>
+        } />
+        <Route path="/summary" element={
+          <RequiresAuth>
+            <OrderSummary />
           </RequiresAuth>
         } />
       </Routes>

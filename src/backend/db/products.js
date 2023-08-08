@@ -98,7 +98,7 @@ export const products = [
     price: 16995,
     type: "running",
     description:
-      "People love the idea of adventure in the great outdoors, but there’s more to the natural landscape than fresh air and scenic views. Uneven terrain, debris, and moisture are unique challenges to footwear that require specialized construction. For those who take going off the beaten path literally, there’s the Fresh Foam X Hierro, a dedicated, off-road application of our best running technology. The New Balance Fresh Foam X Hierro v7 GTX women's running shoe employs a Vibram® Megagrip outsole and a GORE-TEX® waterproof lining to create a protective shell of durability and traction around the signature Fresh Foam X cushioning.",
+      "People love the idea of adventure in the great outdoors, but there’s more to the natural landscape than fresh air and scenic views.The New Balance Fresh Foam X Hierro v7 GTX women's running shoe employs a Vibram® Megagrip outsole and a GORE-TEX® waterproof lining to create a protective shell of durability and traction around the signature Fresh Foam X cushioning.",
     img: [
       "https://nb.scene7.com/is/image/NB/wthier7a_nb_02_i?$pdpflexf22x$&qlt=80&fmt=webp&wid=880&hei=880",
       "https://nb.scene7.com/is/image/NB/wthier7a_nb_05_i?$pdpflexf22x$&qlt=80&fmt=webp&wid=880&hei=880",

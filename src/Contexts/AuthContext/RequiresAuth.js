@@ -5,7 +5,7 @@ const RequiresAuth = ({ children }) => {
 
     let location = useLocation();
     const user_Token = sessionStorage.getItem("access_token");
-    console.log("Token found", user_Token)
+    // console.log("Token found", user_Token)
 
 
     return user_Token ? (children) : (

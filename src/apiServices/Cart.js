@@ -31,7 +31,7 @@ export const cart_add_API = async (item,encodedToken) =>{
         })
         const resBody = await res?.json();
         console.log("Response from CART-ADD item", resBody); 
-
+        return resBody;
     } catch (error) {
         console.error(error);
     }
@@ -40,7 +40,7 @@ export const cart_add_API = async (item,encodedToken) =>{
 
 // delete item from CART
 
-export const cart_delete_API = async (productId,encodedToken) =>{
+export const cart_delete_API = async (productId,{encodedToken}) =>{
     try {
         const res = await fetch(`/api/user/cart/${productId}`,{
             method:"DELETE",
@@ -51,7 +51,7 @@ export const cart_delete_API = async (productId,encodedToken) =>{
         })
         const resBody = await res?.json();
         console.log("Response from Wishlist DELETE item", resBody); 
-
+        return resBody.cart;
     } catch (error) {
         console.error(error);
     }
@@ -60,9 +60,9 @@ export const cart_delete_API = async (productId,encodedToken) =>{
 
 // update quantity of item in the cart
 
-export const cart_quantity_API = async (encodedToken,itemAction,productId) =>{
+export const cart_quantity_API = async ({encodedToken},itemAction,productId) =>{
     try {
-         const res = await fetch(`/api/user/cart/:${productId}`,{
+         const res = await fetch(`/api/user/cart/${productId}`,{
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -74,6 +74,9 @@ export const cart_quantity_API = async (encodedToken,itemAction,productId) =>{
                 }
             })
          })
+         const response = await res?.json(); 
+         console.log("Response QTY item", response);
+         return response.cart;
     } catch (error) {
         console.error(error);
     }

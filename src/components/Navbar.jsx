@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   FaBars,
@@ -10,9 +10,13 @@ import {
 } from "react-icons/fa";
 import {} from "react-icons/fa";
 import { GiFootprint } from "react-icons/gi";
+import { WishlistContext } from "../Contexts/Wishlist/WishlistContext";
+import { CartContext } from "../Contexts/Cart/CartContext";
 
 export const Navbar = () => {
   const [nav, setNav] = useState(true);
+  const {wishlist} = useContext(WishlistContext);
+  const {cart} = useContext(CartContext);
   return (
     <div className="z-[9999] top-0 sticky flex justify-between items-center w-full h-[80px]  px-4 bg-bgPrimary  text-lightText    ">
       <div className="text-3xl md:text-5xl font-heading uppercase ">
@@ -31,21 +35,27 @@ export const Navbar = () => {
             <FaCompass />{" "}
           </Link>
         </p>
-        <p className=" px-3 cursor-pointer capitalize font-bolder flex justify-center items-center hover:text-lightTextDark  ">
+        <p className=" px-3 cursor-pointer capitalize font-bolder flex justify-center items-center hover:text-lightTextDark relative   ">
           <Link to="/wishlist">
             {" "}
             <span className="p-2">
               <FaHeart />
             </span>
           </Link>
+          {
+            wishlist.length >0 && (<p className="w-[25px] h-[25px] text-[15px] mx-1 hidden md:flex  md:items-center md:justify-center py-[-3] px-1 bg-red-500 rounded-[50%] absolute left-[60%] top-[25%] ">{wishlist.length}</p>)
+          }
         </p>
-        <p className="px-3 cursor-pointer font-bolder flex justify-center items-center hover:text-lightTextDark">
+        <p className="px-3 cursor-pointer font-bolder flex justify-center items-center hover:text-lightTextDark relative">
           <Link to="/cart">
             {" "}
             <span className="p-2">
               <FaShoppingCart />
             </span>
           </Link>
+          {
+            cart.length >0 && (<p className="w-[25px] h-[25px] text-[15px] mx-1 hidden md:flex  md:items-center md:justify-center py-[-3] px-1 bg-red-500 rounded-[50%] absolute left-[60%] top-[25%] ">{cart.length}</p>)
+          }
         </p>
         <p className=" px-3 cursor-pointer font-bolder flex justify-center items-center hover:text-lightTextDark">
           <Link to="/profile">

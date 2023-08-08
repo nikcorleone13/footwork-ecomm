@@ -1,32 +1,83 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import FilterBar from "../filtersection/FilterBar";
 import { FaCartPlus, FaHeart } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
 import { FaRupeeSign } from "react-icons/fa";
 import { AuthContext } from "../../../Contexts/AuthContext/AuthContext";
+import {
+  wishlist_add_API,
+  wishlist_get_API,
+} from "../../../apiServices/Wishlist";
+import { WishlistContext } from "../../../Contexts/Wishlist/WishlistContext";
+import { CartContext } from "../../../Contexts/Cart/CartContext";
+import { cart_add_API } from "../../../apiServices/Cart";
 
 const Listing = (data) => {
   const [showData, setShowData] = useState(data.data);
-  const {userToken } = useContext(AuthContext);
+  const { userToken } = useContext(AuthContext);
+  const { wishlist, handleWishlist } = useContext(WishlistContext);
   const navigate = useNavigate();
+  const { cart, updateCart } = useContext(CartContext);
+  console.log("context updated", cart);
 
   // adding item to wishlist
   const handle_Wishlist_Item = (item) => {
-    
-      console.log("ITEM to add", item);
-      console.log("Token value", userToken);
-      !userToken && navigate("/wishlist");
+    // console.log("WISHLIST CONTEXT", wishlist);
+    const token = sessionStorage.getItem("access_token");
+    // token not found
+    if (!token) {
+      navigate("/wishlist");
+    }
 
-      console.log("Redirecting.....")
+    // tooken found
+    else {
+      const ob = wishlist.filter((obj) => obj._id === item._id);
+      console.log("FOUND", ob);
+      // api call to add
+      if (ob.length > 0) {
+        // console.log("ITEM in wishlist");
+      } else {
+        wishlist_add_API(item, token).then((response) => {
+          // console.log("Wishlist item data received", response.wishlist);
+          handleWishlist([...response.wishlist]);
+        });
+      }
+    }
   };
- 
- 
+
+  // adding item to cart
+
+  const handle_Cart_Item = (item) => {
+    console.log("Item to cart", item);
+    console.log("COntext", cart);
+
+    const token = sessionStorage.getItem("access_token");
+    // token not found
+    if (!token) {
+      navigate("/cart");
+    }
+
+    // tooken found
+    else {
+      const ob = cart.filter((obj) => obj._id === item._id);
+      console.log("FOUND", ob);
+      // api call to add
+      if (ob.length > 0) {
+        // console.log("ITEM in wishlist");
+      } else {
+        cart_add_API(item, token).then((response) => {
+          console.log("Cart item data received", response.cart);
+          updateCart([...response.cart]);
+        });
+      }
+    }
+  };
+
   useEffect(() => {
     setShowData(data.data);
   }, [data.data]);
 
- 
   return (
     <div className="h-full ">
       <div className="flex flex-col md:flex-row relative ">
@@ -79,7 +130,10 @@ const Listing = (data) => {
                       <FaRupeeSign />
                       <span className="font-semibold "> {item.price}</span>
                     </p>
-                    <div className="w-[100%] h-[20%] py-1 bg-bgPrimary text-lightText my-1 rounded-md flex items-center justify-center cursor-pointer text-lg hover:scale-[101%] duration-200">
+                    <div
+                      className="w-[100%] h-[20%] py-1 bg-bgPrimary text-lightText my-1 rounded-md flex items-center justify-center cursor-pointer text-lg  duration-200"
+                      onClick={() => handle_Cart_Item(item)}
+                    >
                       <FaCartPlus className="mx-1" />
                       Add to Cart
                     </div>
