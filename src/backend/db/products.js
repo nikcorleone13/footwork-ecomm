@@ -8,7 +8,7 @@ import { v4 as uuid } from "uuid";
 export const products = [
   {
     _id: "b383e4c6-f5db-4527-8b56-eeae6609dju3",
-    name: "ARCH FIT ORVAN - VERDIGO",
+    name: "Arch Fit ORVAN-VERDIGO",
     brand: "Skechers",
     price: 8759,
     type: "running",
@@ -42,7 +42,7 @@ export const products = [
   },
   {
     _id: "eyc9e4c6-f5db-8f63-8b56-eeae6609dju3",
-    name: "X_PLRBOOST SHOES",
+    name: "X_PLRBOOST",
     brand: "Adidas",
     price: 17999,
     type: "running",

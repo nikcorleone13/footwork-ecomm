@@ -3,7 +3,7 @@ import { GiFootprint } from "react-icons/gi";
 import Typed from "typed.js";
 import { loginAPI, singupAPI } from "../../apiServices/Authentication";
 import { AuthContext } from "../../Contexts/AuthContext/AuthContext";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [signup, setSingup] = useState(false);
@@ -18,6 +18,7 @@ const Login = () => {
   const { changeLogin, setAuthToken, setUserData } = useContext(AuthContext);
 
   const el = useRef(null);
+  const navigate = useNavigate();
 
   //   LOGIN HANDLING
   const handleLogin = (email, password) => {
@@ -40,6 +41,8 @@ const Login = () => {
           // storing in storage
           sessionStorage.setItem("access_token", apiToken);
           sessionStorage.setItem("user_info", JSON.stringify(apiUser));
+          sessionStorage.setItem("first_Name",JSON.stringify(apiUser.firstName));
+          sessionStorage.setItem("last_Name",JSON.stringify(apiUser.lastName));
 
         //    cheking localstorage
 
@@ -51,7 +54,7 @@ const Login = () => {
           setAuthToken(sessionStorage.getItem("access_token"));
           setUserData(sessionStorage.getItem("user_info"));
 
-          changeLogin();
+          navigate("/products");
         })
         .catch((error) => {
           console.log("Error:", error);
@@ -72,9 +75,30 @@ const Login = () => {
     ) {
       //   sign up resolve
       singupAPI(email, password, firstName, surname)
-        .then((token) => {
-          console.log("TOKEN for signup,", token);
-          changeLogin(true, token);
+        .then((response) => {
+          sessionStorage.setItem("apiResponse", response)
+          const apiToken =  response.encodedToken;
+          const apiUser = response.createdUser;
+        console.log("TOKEN received from singup",apiToken);
+        console.log("USER received from singup", apiUser);
+
+        // storing in storage
+        sessionStorage.setItem("access_token", apiToken);
+        sessionStorage.setItem("user_info", JSON.stringify(apiUser));
+        sessionStorage.setItem("first_Name",JSON.stringify(apiUser.someUserAttribute1));
+        sessionStorage.setItem("last_Name",JSON.stringify(apiUser.someUserAttribute2));
+
+      //    cheking localstorage
+
+      // console.log("token storage",sessionStorage.getItem("access_token"));
+      // console.log("User storage",JSON.parse(sessionStorage.getItem("user_info")));
+
+
+        //   setting value to context
+        setAuthToken(sessionStorage.getItem("access_token"));
+        setUserData(sessionStorage.getItem("user_info"));
+
+        navigate("/products");
         })
         .catch((error) => {
           console.error(error);

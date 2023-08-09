@@ -69,8 +69,8 @@ const Cart = () => {
               <Loader />
             ) : (
               <>
-                <p className="my-6 text-3xl font-bold">
-                  Cart Total: {total}
+                <p className="my-6 text-3xl font-bold flex justify-center items-center">
+                  Cart Total: <span className="flex items-center justify-center"><FaRupeeSign />{total}</span> 
                 </p>
                 <div className='cursor-pointer w-[350px] md:w-[800px] p-4 bg-yellow-400 hover:bg-yellow-300  my-6 flex items-center justify-center uppercase tracking-wider text-xl rounded-xl font-semibold' onClick={()  => navigate("/summary")}>
                     Place order

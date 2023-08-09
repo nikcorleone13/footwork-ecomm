@@ -12,6 +12,8 @@ import {
 import { WishlistContext } from "../../../Contexts/Wishlist/WishlistContext";
 import { CartContext } from "../../../Contexts/Cart/CartContext";
 import { cart_add_API } from "../../../apiServices/Cart";
+import { toast } from "react-toastify";
+
 
 const Listing = (data) => {
   const [showData, setShowData] = useState(data.data);
@@ -34,7 +36,6 @@ const Listing = (data) => {
     else {
       const ob = wishlist.filter((obj) => obj._id === item._id);
       console.log("FOUND", ob);
-      // api call to add
       if (ob.length > 0) {
         // console.log("ITEM in wishlist");
       } else {

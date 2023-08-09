@@ -27,7 +27,7 @@ export const singupAPI = async (email,password,attr1,attr2) =>{
             someUserAttribute2:attr2
         })
     });
-        const resbody  = res?.json();
+        const resbody  = await res?.json();
         console.log("Response", resbody);
         return resbody;
     } catch (error) {
