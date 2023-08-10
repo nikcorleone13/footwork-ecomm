@@ -13,15 +13,23 @@ import { FaRupeeSign } from "react-icons/fa";
 import { Loader } from "../../components/loadingScreen/Loader";
 import { CartContext } from "../../Contexts/Cart/CartContext";
 import { cart_add_API } from "../../apiServices/Cart";
-import {IoClose} from "react-icons/io5"
+import { IoClose } from "react-icons/io5";
 
 const Wishlist = () => {
   const [loading, setLoading] = useState(false);
   const [wishlistData, setWishlistData] = useState([]);
+  const [isButtonDisabled, setButtonDisabled] = useState(false);
   const { wishlist, handleWishlist } = useContext(WishlistContext);
   const { userToken } = useContext(AuthContext);
-  const {cart,updateCart } = useContext(CartContext);
+  const { cart, updateCart } = useContext(CartContext);
   const navigate = useNavigate();
+
+  const handleDisableButton = () => {
+    setButtonDisabled(true);
+    setTimeout(() => {
+      setButtonDisabled(false);
+    }, 2000);
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -56,7 +64,7 @@ const Wishlist = () => {
     });
   };
 
-  const addToCart = (item) =>{
+  const addToCart = (item) => {
     console.log("Item to cart", item);
     console.log("COntext", cart);
 
@@ -151,12 +159,17 @@ const Wishlist = () => {
                           <IoClose className="mx-2" />
                           Remove from Wishlist
                         </div>
-                        <div className="w-[100%] h-[20%] py-1 bg-bgPrimary   text-lightText my-1 rounded-md flex items-center justify-center cursor-pointer text-lg duration-200 tracking-wider" onClick={() =>
-                            addToCart(item)
-                          } >
+                        <button
+                          className="w-[100%] h-[20%] py-1 bg-bgPrimary   text-lightText my-1 rounded-md flex items-center justify-center cursor-pointer text-lg duration-200 tracking-wider"
+                          onClick={() => {
+                            addToCart(item);
+                            handleDisableButton();
+                          }}
+                          disabled={isButtonDisabled}
+                        >
                           <FaCartPlus className="mx-2" />
                           Add to Cart
-                        </div>
+                        </button>
                       </div>
                     </div>
                   );

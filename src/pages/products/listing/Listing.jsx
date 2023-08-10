@@ -28,7 +28,7 @@ const Listing = (data) => {
     setButtonDisabled(true);
     setTimeout(() => {
       setButtonDisabled(false);
-    }, 4000);
+    }, 1500);
   };
   // adding item to wishlist
   const handle_Wishlist_Item = (item) => {

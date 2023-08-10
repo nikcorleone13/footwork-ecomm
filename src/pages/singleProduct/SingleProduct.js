@@ -27,7 +27,7 @@ const SingleProduct = () => {
     setButtonDisabled(true);
     setTimeout(() => {
       setButtonDisabled(false);
-    }, 4000);
+    }, 2000);
   };
 
   useEffect(() => {
