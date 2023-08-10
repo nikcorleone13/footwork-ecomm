@@ -12,7 +12,7 @@ import RequiresAuth from "./Contexts/AuthContext/RequiresAuth";
 import Login from "./pages/login/Login";
 import Profile from "./pages/profile/Profile";
 import OrderSummary from "./pages/summary/OrderSummary";
-import { ToastContainer } from "react-toastify";
+import Confirm from "./pages/confirmation/Confirm";
 
 function App() {
   return (
@@ -54,6 +54,14 @@ function App() {
           element={
             <RequiresAuth>
               <OrderSummary />
+            </RequiresAuth>
+          }
+        />
+                <Route
+          path="/paymentconfirmation/:paymentId"
+          element={
+            <RequiresAuth>
+              <Confirm />
             </RequiresAuth>
           }
         />

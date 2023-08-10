@@ -84,20 +84,20 @@ const Profile = () => {
             </div>
             {
               editAddress &&
-              <div className="w-screen h-screen bg-slate-200 absolute top-[-80px] left-0 mx-auto flex justify-center items-center overflow-x:hidden">
-                <div className="bg-red-400 w-[90%] md:w-[50%] flex flex-col justify-between items-center  gap-4">
-                  <input className="w-[90%] md:w-[70%] p-2 rounded-md active:outline-none" value={line1} type="text" placeholder="Address Line 1. Eg:- House No" onChange={(e) => setLine1(e.target.value) } />
-                  <input onChange={(e) => setLine2(e.target.value) }  className="w-[90%] md:w-[70%] p-2 rounded-md active:outline-none" value={line2} type="text" placeholder="Addresss Line 2. Eg:- Society / Area" />
-                  <input onChange={(e) => setLocality(e.target.value) }  className="w-[90%] md:w-[70%] p-2 rounded-md active:outline-none" value={locality} type="text" placeholder="Locality/Area" />
-                  <input onChange={(e) => setCity(e.target.value) }  className="w-[90%] md:w-[70%] p-2 rounded-md active:outline-none" value={city} type="text" placeholder="City" />
-                  <input onChange={(e) => setState(e.target.value) }  className="w-[90%] md:w-[70%] p-2 rounded-md active:outline-none" value={state} type="text" placeholder="State" />
-                  <input onChange={(e) => setPincode(e.target.value) }  className="w-[90%] md:w-[70%] p-2 rounded-md active:outline-none" value={pincode} type="text/number" placeholder="Pincode" />
-                  <input onChange={(e) => setPhone(e.target.value) }  className="w-[90%] md:w-[70%] p-2 rounded-md active:outline-none" value={phone} type="text" placeholder="Phone Number" />
+              <div className="bg-white  w-screen h-screen  absolute top-[-80px] md:top-[-40px]  left-0 mx-auto flex justify-center items-center overflow-x:hidden">
+                <div className="bg-white  w-[90%] md:w-[50%] flex flex-col justify-between items-center  gap-4">
+                  <input className=" border-2 border-gray-400 w-[90%] md:w-[70%] p-2 rounded-md active:outline-none" value={line1} type="text" placeholder="Address Line 1. Eg:- House No" onChange={(e) => setLine1(e.target.value) } />
+                  <input onChange={(e) => setLine2(e.target.value) }  className=" border-2 border-gray-400 w-[90%] md:w-[70%] p-2 rounded-md active:outline-none" value={line2} type="text" placeholder="Addresss Line 2. Eg:- Society / Area" />
+                  <input onChange={(e) => setLocality(e.target.value) }  className=" border-2 border-gray-400 w-[90%] md:w-[70%] p-2 rounded-md active:outline-none" value={locality} type="text" placeholder="Locality/Area" />
+                  <input onChange={(e) => setCity(e.target.value) }  className=" border-2 border-gray-400 w-[90%] md:w-[70%] p-2 rounded-md active:outline-none" value={city} type="text" placeholder="City" />
+                  <input onChange={(e) => setState(e.target.value) }  className=" border-2 border-gray-400 w-[90%] md:w-[70%] p-2 rounded-md active:outline-none" value={state} type="text" placeholder="State" />
+                  <input onChange={(e) => setPincode(e.target.value) }  className=" border-2 border-gray-400 w-[90%] md:w-[70%] p-2 rounded-md active:outline-none" value={pincode} type="text/number" placeholder="Pincode" />
+                  <input onChange={(e) => setPhone(e.target.value) }  className=" border-2 border-gray-400 w-[90%] md:w-[70%] p-2 rounded-md active:outline-none" value={phone} type="text" placeholder="Phone Number" />
 
                   
                   <div className="mt-8 flex flex-col gap-2">
-                  <button className="px-3 py-2  bg-green-400"onClick={() => {updateAddress();  setEditAddress(!editAddress);}}>Update Address</button>
-                  <button className="px-3 py-2  bg-green-400" onClick={() => setEditAddress(!editAddress)}>Cancel</button>
+                  <button className="my-2 px-3 py-2  bg-blue-400"onClick={() => {updateAddress();  setEditAddress(!editAddress);}}>Update Address</button>
+                  <button className="my-2 px-3 py-2  bg-red-400" onClick={() => setEditAddress(!editAddress)}>Cancel</button>
                   </div>
 
                 </div>

@@ -1,17 +1,49 @@
 import React,{useContext} from 'react'
 import { CartContext } from '../../Contexts/Cart/CartContext'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthContext/AuthContext';
 import {FaArrowLeft} from "react-icons/fa6";
 
 const OrderSummary = () => {
-    const {cart} = useContext(CartContext);
+    const {cart,updateCart} = useContext(CartContext);
     const {userAddress}= useContext(AuthContext);
+    const navigate = useNavigate();
     
 
     const total = cart.reduce((sum, curr) => {sum += curr.price*curr.qty; return sum}, 0);
     const discount = (total/100) * 20;
+    const finalAmount = total-discount;
     
+
+    const handlePayment = () =>{
+      // window.alert("Mock payment F");
+      var options = {
+        key: "rzp_test_22xAJLCMbqHvAp",
+        key_secret:"zK5X3JZ6isUfVrpS5kX1BYxC",
+        amount: Number(finalAmount)*100,
+        currency:"INR",
+        name:"FOOTWORK Inc.",
+        description:"where comfort meets fashion",
+        handler: function(response){
+          updateCart([]);
+          navigate(`/paymentconfirmation/${response.razorpay_payment_id}`);
+
+        },
+        prefill: {
+          name:"Nikhil Kumar",
+          email:"nikhilkumarsingh166@gmail.com",
+          contact:"8767571149"
+        },
+        notes:{
+          address:"Razorpay Corporate office"
+        },
+        theme: {
+          color:"#3399cc"
+        }
+      };
+      var pay = new window.Razorpay(options);
+      pay.open();
+    }
     return (
     <>
       <div className='w-full h-full md:h-full flex flex-col justify-center items-center mt-10'>
@@ -78,7 +110,7 @@ const OrderSummary = () => {
                       <div className=" w-[100%] border-b-2 my-2 mx-1 text-lg font-semibold"><span className="mx-2" >Total Amount</span></div>
                     </div >
                     <div className="w-[50%] text-right">
-                      <div className=" w-[100%] border-b-2 my-2 mx-1 text-lg font-semibold"><span className="mx-2" ></span>Rs. {total-discount}</div>
+                      <div className=" w-[100%] border-b-2 my-2 mx-1 text-lg font-semibold"><span className="mx-2" ></span>Rs. {finalAmount}</div>
                     </div>
                   </div>
             </div>
@@ -99,13 +131,12 @@ const OrderSummary = () => {
 
         </div>        
             
-            <Link to="/" className=" cursor-pointer my-8 w-[90%] md:w-[40%] p-3 text-2xl font-bold text-white rounded-md bg-green-500 md:hover:bg-green-600 ">
-            <div>Proceed to payment</div>
-            </Link>
+            
+            <div className="cursor-pointer my-8 w-[90%] md:w-[40%] p-3 text-2xl font-bold text-white rounded-md bg-green-500 md:hover:bg-green-600 " onClick={() => handlePayment()} >Proceed to payment</div>
 
       </div>
     </>
   )
 }
 
-export default OrderSummary
+export default OrderSummary 
