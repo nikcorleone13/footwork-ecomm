@@ -1,4 +1,4 @@
-import React, {  useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import { get_Single_Item_API } from "../../apiServices/SingleItem";
@@ -12,16 +12,24 @@ import { cart_add_API } from "../../apiServices/Cart";
 
 const SingleProduct = () => {
   const [prodId, setProdId] = useState("");
-  const [showItem, setShowItem] = useState(null); 
+  const [isButtonDisabled, setButtonDisabled] = useState(false);
+  const [showItem, setShowItem] = useState(null);
   const [loader, setLoader] = useState(false);
   const [currImg, setCurrImg] = useState();
   const [selectedValue, setSelectedValue] = useState("5");
-  const {wishlist,handleWishlist} = useContext(WishlistContext);
-  const {cart,updateCart} = useContext(CartContext);
+  const { wishlist, handleWishlist } = useContext(WishlistContext);
+  const { cart, updateCart } = useContext(CartContext);
   //   context and params data
   const { productId } = useParams();
   const navigate = useNavigate();
-  
+
+  const handleDisableButton = () => {
+    setButtonDisabled(true);
+    setTimeout(() => {
+      setButtonDisabled(false);
+    }, 4000);
+  };
+
   useEffect(() => {
     if (!prodId) {
       localStorage.setItem("item_id", productId);
@@ -53,9 +61,8 @@ const SingleProduct = () => {
     setSelectedValue(e.target.value);
   };
 
-
   // add wihslist
-  const handle_Add_Wishlist_Item = (item) =>{
+  const handle_Add_Wishlist_Item = (item) => {
     // console.log("WISHLIST CONTEXT", wishlist);
     const token = sessionStorage.getItem("access_token");
     // token not found
@@ -79,10 +86,9 @@ const SingleProduct = () => {
     }
   };
 
-
   // add to cart
 
-  const handle_Add_Cart_Item = (item) =>{
+  const handle_Add_Cart_Item = (item) => {
     console.log("Item to cart", item);
     console.log("COntext", cart);
 
@@ -121,21 +127,25 @@ const SingleProduct = () => {
               <>
                 <div className=" p-4 md:p-1 md:w-[60%] h-[70%] md:h-[95%] flex flex-col justify-between items-center">
                   <img
-                    src={currImg || showItem?.img[0]} alt="main-item"
+                    src={currImg || showItem?.img[0]}
+                    alt="main-item"
                     className="w-[100%] h-[80%] md:w-[100%] md:h-[80%]  md:hover:scale-[125%] duration-200 object-scale-down"
-                    
                   />
                   <div className="h-[25%] w-[100%] md:w-[70%]  flex justify-evenly p-1 gap-1">
                     {showItem?.img.map((item) => {
                       return (
-                          <img
+                        <img
                           key={item.id}
                           src={item}
                           className="border-2 h-[100%] w-[25%] object-cover md:cursor-pointer  "
                           onClick={() => setCurrImg(item)}
                           alt={item.id}
-                          style={currImg === item ? { border: "2px solid #1f2b33" } : { border: "none" }}
-                          />
+                          style={
+                            currImg === item
+                              ? { border: "2px solid #1f2b33" }
+                              : { border: "none" }
+                          }
+                        />
                       );
                     })}
                   </div>
@@ -189,18 +199,29 @@ const SingleProduct = () => {
                         </select>
                       </div>
                       <div className=" my-4 flex justify-between uppercase">
-                        <div className="w-[45%] flex items-center justify-center border-2 rounded-md py-2 text-lg bg-yellow-500 text-lightText border-yellow-500 cursor-pointer" onClick={() => handle_Add_Wishlist_Item(showItem)}>
-                          Add to Wishlist{" "}
-                          <span className="ml-2">
-                            <FaHeart />{" "}
-                          </span>
-                        </div>
-                        <div className="w-[45%] flex items-center justify-center border-2 rounded-md py-2 text-lg bg-green-500 text-lightText border-green-500 cursor-pointer"  onClick={() => handle_Add_Cart_Item(showItem)} >
+                        <button
+                          className="w-[45%] flex items-center justify-center border-2 rounded-md py-2 text-lg bg-yellow-500 text-lightText border-yellow-500 cursor-pointer"
+                          onClick={() => {
+                            handleDisableButton();
+                            handle_Add_Wishlist_Item(showItem);
+                          }}
+                          disabled={isButtonDisabled}
+                        >
+                          Add to Wishlist <FaHeart className="ml-2" />{" "}
+                        </button>
+                        <button
+                          className="w-[45%] flex items-center justify-center border-2 rounded-md py-2 text-lg bg-green-500 text-lightText border-green-500 cursor-pointer"
+                          onClick={() => {
+                            handleDisableButton();
+                            handle_Add_Cart_Item(showItem);
+                          }}
+                          disabled={isButtonDisabled}
+                        >
                           Add to Cart{" "}
                           <span className="ml-2">
                             <FaCartPlus />{" "}
                           </span>
-                        </div>
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -230,18 +251,32 @@ const SingleProduct = () => {
                   </select>
                 </div>
                 <div className="my-6 flex justify-evenly uppercase ">
-                  <button className="w-[45%] flex items-center justify-center border-2 rounded-md py-2 text-lg bg-yellow-500 text-lightText border-yellow-500 cursor-pointer" onClick={() => handle_Add_Wishlist_Item(showItem)}>
+                  <button
+                    className="w-[45%] flex items-center justify-center border-2 rounded-md py-2 text-lg bg-yellow-500 text-lightText border-yellow-500 cursor-pointer"
+                    onClick={() => {
+                      handle_Add_Wishlist_Item(showItem);
+                      handleDisableButton();
+                    }}
+                    disabled={isButtonDisabled}
+                  >
                     Add to Wishlist{" "}
                     <span className="ml-2">
                       <FaHeart />{" "}
                     </span>
                   </button>
-                  <div className="w-[45%] flex items-center justify-center border-2 rounded-md py-2 text-lg bg-green-500 text-lightText border-green-500 cursor-pointer"  onClick={() => handle_Add_Cart_Item(showItem)} >
+                  <button
+                    className="w-[45%] flex items-center justify-center border-2 rounded-md py-2 text-lg bg-green-500 text-lightText border-green-500 cursor-pointer"
+                    onClick={() => {
+                      handle_Add_Cart_Item(showItem);
+                      handleDisableButton();
+                    }}
+                    disabled={isButtonDisabled}
+                  >
                     Add to Cart{" "}
                     <span className="ml-2">
                       <FaCartPlus />{" "}
                     </span>
-                  </div>
+                  </button>
                 </div>
                 <div className=" text-left p-4">
                   <p className="text-xl font-semibold">Description</p>

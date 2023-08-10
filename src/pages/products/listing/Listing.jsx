@@ -12,17 +12,24 @@ import {
 import { WishlistContext } from "../../../Contexts/Wishlist/WishlistContext";
 import { CartContext } from "../../../Contexts/Cart/CartContext";
 import { cart_add_API } from "../../../apiServices/Cart";
-import { toast } from "react-toastify";
 
 
 const Listing = (data) => {
   const [showData, setShowData] = useState(data.data);
+  const [isButtonDisabled, setButtonDisabled] = useState(false);
   const { userToken } = useContext(AuthContext);
   const { wishlist, handleWishlist } = useContext(WishlistContext);
   const navigate = useNavigate();
   const { cart, updateCart } = useContext(CartContext);
   console.log("context updated", cart);
 
+
+  const handleDisableButton = () => {
+    setButtonDisabled(true);
+    setTimeout(() => {
+      setButtonDisabled(false);
+    }, 4000);
+  };
   // adding item to wishlist
   const handle_Wishlist_Item = (item) => {
     // console.log("WISHLIST CONTEXT", wishlist);
@@ -97,11 +104,14 @@ const Listing = (data) => {
                   key={item._id}
                   className="h-full w-[350px] flex flex-col items-center   relative m-4 border-2 border-bgPrimary rounded-lg p-1 md:hover:border-[#00ff6a]"
                 >
+                  <button onClick={() => {handle_Wishlist_Item(item); handleDisableButton(); }} disabled={isButtonDisabled}>
                   <FaHeart
                     size={25}
                     className="absolute right-2 top-2 text-gray-500 hover:text-red-700 cursor-pointer "
-                    onClick={() => handle_Wishlist_Item(item)}
+                    
                   />
+                  </button>
+
                   {/* image */}
                   <Link
                     to={`/products/${item._id}`}
@@ -131,13 +141,17 @@ const Listing = (data) => {
                       <FaRupeeSign />
                       <span className="font-semibold "> {item.price}</span>
                     </p>
-                    <div
+                    <button
                       className="w-[100%] h-[20%] py-1 bg-bgPrimary text-lightText my-1 rounded-md flex items-center justify-center cursor-pointer text-lg  duration-200"
-                      onClick={() => handle_Cart_Item(item)}
+                      onClick={() =>{
+                        handle_Cart_Item(item);
+                        handleDisableButton();
+                      }}
+                      disabled={isButtonDisabled}
                     >
-                      <FaCartPlus className="mx-1" />
+                      <FaCartPlus className="mx-1"  />
                       Add to Cart
-                    </div>
+                    </button>
                   </div>
                 </div>
               );
