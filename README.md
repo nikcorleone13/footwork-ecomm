@@ -4,7 +4,11 @@
 
 
 
-- mockBee backend
+
+https://github.com/nikcorleone13/footwork-ecomm/assets/49964080/f09201fd-2e87-4f15-9c79-8e8bbeaa2a05
+
+
+
 
 ## How to install and run locally?
 
@@ -25,23 +29,24 @@ $ npm start
 - Wishlist management
 - Cart Managment
 - Address management
-- Checkout page
+- Checkout page with review and update options
 - Payment gateway integration (Razorpay)
 - Authentication:
   - User Signup
   - User Login
   - User Information Page
-- Error Page
-- Loaders
-- Responsive
+- 404 Error Page on unspecified route
+- Loading Animations
+- Mobile Responsive
 
 ## Built with -
 
 - React JS
 - React Router v6
 - React Context API + useReducer
+- mockBee backend
 - Vanilla CSS
 - Tailwind CSS
 - Razorpay payment gateway
-- mockBee backend
+
 
