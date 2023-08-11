@@ -122,8 +122,8 @@ const FilterBar = () => {
                   className="cursor-pointer"
                   type="checkbox"
                   checked={sneaker}
-                  onChange={() =>
-                    dispatch({ type: "CATEGORY", payload: "sneaker" })
+                  onChange={() =>{
+                    dispatch({ type: "CATEGORY", payload: "sneaker" });setSneaker(!sneaker); }
                   }
                 />
               </div>
@@ -133,8 +133,8 @@ const FilterBar = () => {
                   className="cursor-pointer"
                   type="checkbox"
                   checked={running}
-                  onChange={() =>
-                    dispatch({ type: "CATEGORY", payload: "running" })
+                  onChange={() =>{
+                    dispatch({ type: "CATEGORY", payload: "running" });setRunning(!running); }
                   }
                 />
               </div>
@@ -144,8 +144,8 @@ const FilterBar = () => {
                   className="cursor-pointer"
                   type="checkbox"
                   checked={casual}
-                  onChange={() =>
-                    dispatch({ type: "CATEGORY", payload: "casual" })
+                  onChange={() =>{
+                    dispatch({ type: "CATEGORY", payload: "casual" });setCasual(!casual); }
                   }
                 />
               </div>
