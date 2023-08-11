@@ -174,7 +174,7 @@ const FilterBar = () => {
             <p className="font-semibold ">Sort by Price</p>
             <div className=" p-1 mt-2  flex flex-col items-center justify-center">
               <div className="mt-1 w-[40%] md:w-[50%] flex justify-between items-center  ">
-                <p>High-to-Low</p>
+                <p>Low-to-Low</p>
                 <input
                   className="cursor-pointer"
                   type="checkbox"
@@ -183,7 +183,7 @@ const FilterBar = () => {
                 />
               </div>
               <div className="mt-1 w-[40%] md:w-[50%] flex justify-between items-center  ">
-                <p>Low-to-High</p>
+                <p>High-to-High</p>
                 <input
                   className="cursor-pointer"
                   type="checkbox"
