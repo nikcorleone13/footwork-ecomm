@@ -5,8 +5,8 @@ export const productReducer = (state, action) => {
         case 'INITIAL_API_DATA':
             {
                 return {
-                    ...state, all_Data: action.payload, category: [], price: 30000, sort: '',
-                    rating: ''
+                    ...state, all_Data:[ ...action.payload], category: [], price: 30000, sort: '',
+                    rating: '',search:''
                 }
             }
         case 'CATEGORY': {

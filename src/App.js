@@ -13,6 +13,7 @@ import Login from "./pages/login/Login";
 import Profile from "./pages/profile/Profile";
 import OrderSummary from "./pages/summary/OrderSummary";
 import Confirm from "./pages/confirmation/Confirm";
+import Undefined from "./pages/undefined/Undefined";
 
 function App() {
   return (
@@ -25,6 +26,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/products" element={<Products />} />
         <Route path="/products/:productId" element={<SingleProduct />} />
+        <Route path="*" element={<Undefined />} />
+
         <Route
           path="/cart"
           element={

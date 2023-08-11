@@ -2,12 +2,16 @@ import React, { useContext, useState } from "react";
 import { FaFilter } from "react-icons/fa";
 import { MdClose } from "react-icons/md";
 import { ProductsContext } from "../../../Contexts/ProductsContext/ProductsContext";
+
 const FilterBar = () => {
   const { products, all_data, dispatch } = useContext(ProductsContext);
+  const initialSneakerState = all_data.category.includes('sneaker') || all_data.category.includes('sneakers');
+  const initialRunningState = all_data.category.includes('running') || all_data.category.includes('running');
+  const initialCasualState = all_data.category.includes('casual') || all_data.category.includes('casual');
 
-  const [sneaker, setSneaker] = useState();
-  const [running, setRunning] = useState();
-  const [casual, setCasual] = useState();
+  const [sneaker, setSneaker] = useState(initialSneakerState);
+  const [running, setRunning] = useState(initialRunningState);
+  const [casual, setCasual] = useState(initialCasualState);
   const [filterBar, setFilterBar] = useState(false);
   const [price, setPrice] = useState(all_data.price);
   const [htl, setHTL] = useState(false);
@@ -80,6 +84,7 @@ const FilterBar = () => {
     setTwoStar(false);
     setThreeStar(false);
     setFourStar(false);
+
   };
   return (
     <div
@@ -99,8 +104,8 @@ const FilterBar = () => {
           <p
             className=" underline hover:cursor-pointer hover:text-red-500 md:mb-2"
             onClick={() => {
-              dispatch({ type: "INITIAL_API_DATA", payload: [...products] });
-              handleFiltersReset();
+              dispatch({ type: "INITIAL_API_DATA", payload: products });
+              handleFiltersReset(); 
             }}
           >
             Reset Filters

@@ -7,22 +7,40 @@ import { v4 as uuid } from "uuid";
 
 export const products = [
   {
-    _id: "b383e4c6-f5db-4527-8b56-eeae6609dju3",
-    name: "Arch Fit ORVAN-VERDIGO",
-    brand: "Skechers",
-    price: 8759,
+    _id: "eyc5e4c6-f5db-8303-7sg6-eeae6609dju3",
+    name: "Pegasus Trail 4 GORE-TEX",
+    brand: "Nike",
+    price: 12995,
     type: "running",
     description:
-      "Supportive comfort and easy-wearing style combine in Skechers Arch Fit® Orvan - Verdigo. This slip-on features a heathered mesh and synthetic upper with stretch laces, removable Arch Fit® insole and lightweight Glide-Step® geometric cushioning.",
+      "The Nike Pegasus Trail 4 GORE-TEX is your running companion for those days when the weather turns. Its waterproof GORE-TEX layer helps keep your feet dry, and less rubber in the outsole creates a smooth transition from road to trail without breaking stride.",
     img: [
-      "https://www.skechers.in/on/demandware.static/-/Sites-skechers_india/default/dw4bd2afc4/images/large/195969529270-1.jpg",
-      "https://www.skechers.in/on/demandware.static/-/Sites-skechers_india/default/dwd1c39735/images/large/195969529270-2.jpg",
-      "https://www.skechers.in/on/demandware.static/-/Sites-skechers_india/default/dw5bb26e1b/images/large/195969529270-4.jpg",
-      "https://www.skechers.in/on/demandware.static/-/Sites-skechers_india/default/dw4fe06580/images/large/195969529270-3.jpg",
+      "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/1163a010-7440-4b9c-9b5b-0dfbf691b237/pegasus-trail-4-gore-tex-waterproof-trail-running-shoes-pQ2Pzs.png",
+      "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/33443e3d-ff4b-415b-b226-5803b1db2c24/pegasus-trail-4-gore-tex-waterproof-trail-running-shoes-pQ2Pzs.png",
+      "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/ae18cb97-2bf1-4ed4-8748-5224b90e25b8/pegasus-trail-4-gore-tex-waterproof-trail-running-shoes-pQ2Pzs.png",
+      "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/f5bf37de-8cd3-4ce4-9b37-93e63264e4e9/pegasus-trail-4-gore-tex-waterproof-trail-running-shoes-pQ2Pzs.png",
     ],
-    rating: 4.1,
-    id: "6",
+    rating: 3.9,
+    id: "9",
   },
+  {
+    _id: "0b3cbf86-6c16-4200-b4fc-c2a7fc2d9922",
+    name: "Air Max 90 SE",
+    brand: "Nike",
+    price: 10975,
+    type: "sneaker",
+    description:
+      "Step into the history books. Paying homage to Frank Rudy, the man who created the coveted cornerstone of cushioning—Air—these sneakers celebrate his legacy with fun details. From the release year proudly stamped on the Air unit to the see-through 'Air pocket' heel logo, striking visuals deliver a lesson in comfort.",
+    img: [
+      "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/67cf2b36-73ef-443a-8e99-a496eff525d6/air-max-90-se-shoes-7dKD8F.png",
+      "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/ff15c794-e8bf-41d5-a2c1-b44aa9ef7990/air-max-90-se-shoes-7dKD8F.png",
+      "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/26fd032c-f377-4d9e-864e-2b7fe6ba883f/air-max-90-se-shoes-7dKD8F.png",
+      "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/4841dae4-e65e-4a73-b9c5-c2fc31d10a88/air-max-90-se-shoes-7dKD8F.png",
+    ],
+    rating: 4.3,
+    id: "4",
+  },
+  
   {
     _id: "cjs6e4c6-35db-4557-8b56-eeae6609dju3",
     name: "FuelCell SuperComp",
@@ -57,40 +75,7 @@ export const products = [
     rating: 4.5,
     id: "8",
   },
-  {
-    _id: "eyc5e4c6-f5db-8303-7sg6-eeae6609dju3",
-    name: "Pegasus Trail 4 GORE-TEX",
-    brand: "Nike",
-    price: 12995,
-    type: "running",
-    description:
-      "The Nike Pegasus Trail 4 GORE-TEX is your running companion for those days when the weather turns. Its waterproof GORE-TEX layer helps keep your feet dry, and less rubber in the outsole creates a smooth transition from road to trail without breaking stride.",
-    img: [
-      "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/1163a010-7440-4b9c-9b5b-0dfbf691b237/pegasus-trail-4-gore-tex-waterproof-trail-running-shoes-pQ2Pzs.png",
-      "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/33443e3d-ff4b-415b-b226-5803b1db2c24/pegasus-trail-4-gore-tex-waterproof-trail-running-shoes-pQ2Pzs.png",
-      "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/ae18cb97-2bf1-4ed4-8748-5224b90e25b8/pegasus-trail-4-gore-tex-waterproof-trail-running-shoes-pQ2Pzs.png",
-      "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/f5bf37de-8cd3-4ce4-9b37-93e63264e4e9/pegasus-trail-4-gore-tex-waterproof-trail-running-shoes-pQ2Pzs.png",
-    ],
-    rating: 3.9,
-    id: "9",
-  },
-  {
-    _id: "0b3cbf86-6c16-4200-b4fc-c2a7fc2d9922",
-    name: "Air Max 90 SE",
-    brand: "Nike",
-    price: 10975,
-    type: "sneaker",
-    description:
-      "Step into the history books. Paying homage to Frank Rudy, the man who created the coveted cornerstone of cushioning—Air—these sneakers celebrate his legacy with fun details. From the release year proudly stamped on the Air unit to the see-through 'Air pocket' heel logo, striking visuals deliver a lesson in comfort.",
-    img: [
-      "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/67cf2b36-73ef-443a-8e99-a496eff525d6/air-max-90-se-shoes-7dKD8F.png",
-      "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/ff15c794-e8bf-41d5-a2c1-b44aa9ef7990/air-max-90-se-shoes-7dKD8F.png",
-      "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/26fd032c-f377-4d9e-864e-2b7fe6ba883f/air-max-90-se-shoes-7dKD8F.png",
-      "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/4841dae4-e65e-4a73-b9c5-c2fc31d10a88/air-max-90-se-shoes-7dKD8F.png",
-    ],
-    rating: 4.3,
-    id: "4",
-  },
+
   {
     _id: "9213733c-75be-4a17-bdax-7a5f642d1b73",
     name: "Fresh Foam X Hierro v7 GTX",
@@ -123,6 +108,23 @@ export const products = [
     ],
     rating: 3.2,
     id: "11",
+  },
+  {
+    _id: "b383e4c6-f5db-4527-8b56-eeae6609dju3",
+    name: "Arch Fit ORVAN-VERDIGO",
+    brand: "Skechers",
+    price: 8759,
+    type: "running",
+    description:
+      "Supportive comfort and easy-wearing style combine in Skechers Arch Fit® Orvan - Verdigo. This slip-on features a heathered mesh and synthetic upper with stretch laces, removable Arch Fit® insole and lightweight Glide-Step® geometric cushioning.",
+    img: [
+      "https://www.skechers.in/on/demandware.static/-/Sites-skechers_india/default/dw4bd2afc4/images/large/195969529270-1.jpg",
+      "https://www.skechers.in/on/demandware.static/-/Sites-skechers_india/default/dwd1c39735/images/large/195969529270-2.jpg",
+      "https://www.skechers.in/on/demandware.static/-/Sites-skechers_india/default/dw5bb26e1b/images/large/195969529270-4.jpg",
+      "https://www.skechers.in/on/demandware.static/-/Sites-skechers_india/default/dw4fe06580/images/large/195969529270-3.jpg",
+    ],
+    rating: 4.1,
+    id: "6",
   },
   {
     _id: "4d425385-99a8-4a8f-9bed-00bc165f095b",

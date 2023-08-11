@@ -2,16 +2,19 @@ import { useContext, useState } from "react";
 import React from "react";
 import { ProductsContext } from "../../../Contexts/ProductsContext/ProductsContext";
 
+
 const SearchBar = () => {
   const { all_data, dispatch } = useContext(ProductsContext);
-  const [search, setSearch] = useState();
-
+  const [search, setSearch] = useState(all_data.search);
+  
+  
   // search function
   const handleSearchChange = (text) => {
     console.log("Search", text);
     setSearch(text);
     dispatch({ type: "SEARCH", payload: text });
   };
+
   return (
     <div className=" bg-white py-6 md:py-8 flex justify-center items-center border-b-2  ">
       <div className=" w-[80%] md:w-[40%] flex justify-center items-center rounded ">
