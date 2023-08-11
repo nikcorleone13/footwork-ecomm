@@ -2,8 +2,9 @@
 
 [FootWork Inc.](https://footwork.vercel.app/) - An E-Commerce website for footwear.
 
-https://github.com/nikcorleone13/footwork-ecomm/blob/main/public/video/footwork.mp4
 
+
+- mockBee backend
 
 ## How to install and run locally?
 
@@ -39,8 +40,8 @@ $ npm start
 - React JS
 - React Router v6
 - React Context API + useReducer
-- mockBee backend
 - Vanilla CSS
 - Tailwind CSS
 - Razorpay payment gateway
+- mockBee backend
 
