@@ -18,7 +18,7 @@ export const Navbar = () => {
   const {wishlist} = useContext(WishlistContext);
   const {cart} = useContext(CartContext);
   return (
-    <div className="z-[9999] top-0 sticky flex justify-between items-center w-full h-[80px]  px-4 bg-bgPrimary  text-lightText    ">
+    <div className="z-[999] top-0 sticky flex justify-between items-center w-full h-[80px]  px-4 bg-bgPrimary  text-lightText    ">
       <div className="text-3xl md:text-5xl font-heading uppercase ">
         <Link
           to="/"

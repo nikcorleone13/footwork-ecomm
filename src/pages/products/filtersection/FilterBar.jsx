@@ -241,35 +241,41 @@ const FilterBar = () => {
 
       {/* mobile menu */}
       {filterBar && (
-        <div className="z-[99999] w-[100%] h-[100%] p-2 md:text-lg flex-col justify-evenly absolute top-0 bg-bgPrimary text-lightText">
-          <div className=" flex justify-between  ">
+        <div className="z-[99999] w-screen h-screen md:text-lg flex-col justify-evenly  text-lightText bg-bgPrimary top-0 absolute  ">
+          <div className="bg-bgPrimary flex justify-between  ">
             <p className="flex items-center text-xl md:hidden">
               <MdClose onClick={() => setFilterBar(false)} size={30} />
             </p>
-            <p className="font-bolder underline">Reset Filters</p>
+            <p className="font-bolder underline"             
+              onClick={() => {
+              dispatch({ type: "INITIAL_API_DATA", payload: products });
+              handleFiltersReset(); 
+            }}>Reset Filters</p>
           </div>
           {/* categories and reset */}
-          <div className=" h-[full] p-1 text-xl flex flex-col justify-between">
+          <div className=" h-[full] p-1 text-xl flex flex-col justify-between bg-bgPrimary">
             <div className=" p-1 flex flex-col justify-center">
               <p className="font-semibold ">Categories</p>
               <div className=" p-1 mt-2  flex flex-col items-center justify-center">
                 <div className="mt-1 w-[40%] md:w-[50%] flex justify-between items-center  ">
                   <p>Sneakers</p>
                   <input
-                    className="cursor-pointer"
-                    type="checkbox"
-                    onChange={() =>
-                      dispatch({ type: "CATEGORY", payload: "sneaker" })
-                    }
-                  />
+                  className="cursor-pointer"
+                  type="checkbox"
+                  checked={sneaker}
+                  onChange={() =>{
+                    dispatch({ type: "CATEGORY", payload: "sneaker" });setSneaker(!sneaker); }
+                  }
+                />
                 </div>
                 <div className="mt-1 w-[40%] md:w-[50%] flex justify-between items-center  ">
                   <p>Running</p>
                   <input
                     className="cursor-pointer"
                     type="checkbox"
-                    onChange={() =>
-                      dispatch({ type: "CATEGORY", payload: "running" })
+                    checked={running}
+                    onChange={() =>{
+                      dispatch({ type: "CATEGORY", payload: "running" });setRunning(!running); }
                     }
                   />
                 </div>
@@ -278,8 +284,9 @@ const FilterBar = () => {
                   <input
                     className="cursor-pointer"
                     type="checkbox"
-                    onChange={() =>
-                      dispatch({ type: "CATEGORY", payload: "casual" })
+                    checked={casual}
+                    onChange={() =>{
+                      dispatch({ type: "CATEGORY", payload: "casual" });setCasual(!casual); }
                     }
                   />
                 </div>
