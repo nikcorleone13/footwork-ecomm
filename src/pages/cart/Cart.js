@@ -149,7 +149,7 @@ const Cart = () => {
                         </p>
                         <div className="flex justify-center items-center   ">
                           <p
-                            className="border-2  px-1 cursor-pointer flex justify-center items-center  rounded-lg md:h-[25px]"
+                            className="border-2 px-1 cursor-pointer flex justify-center items-center  rounded-lg md:h-[25px]"
                             onClick={() =>
                               quantityAPI({
                                 productId: item._id,
@@ -162,17 +162,18 @@ const Cart = () => {
                           <p className="p-1 text-2xl font-bold mx-2">
                             {item.qty}
                           </p>
-                          <p
-                            className="border-2  px-1 cursor-pointer flex justify-center items-center  rounded-lg md:h-[25px]"
-                            onClick={() =>
-                              quantityAPI({
+                          <button
+                           disable={item.qty===1}
+                            className="border-2 text-red-500 border-red-500  px-1 cursor-pointer flex justify-center items-center  rounded-lg md:h-[25px]"
+                            onClick={() =>{
+                              item.qty>=1 ? (quantityAPI({
                                 productId: item._id,
                                 itemAction: "decrement",
-                              })
+                              })) : (handleCartRemove({ productId: item._id }))}
                             }
                           >
                             <FaMinus size={20} className="p-1" />
-                          </p>
+                          </button>
                         </div>
                         <div
                           className="w-[100%] h-[20%] py-1  text-red-500 border-red-500 border-2  my-1 rounded-md flex items-center justify-center cursor-pointer text-lg hover:text-white md:hover:bg-red-500 duration-200"
