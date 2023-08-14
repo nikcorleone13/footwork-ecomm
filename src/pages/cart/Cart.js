@@ -176,7 +176,7 @@ const Cart = () => {
                           </button>
                         </div>
                         <div
-                          className="w-[100%] h-[20%] py-1  text-red-500 border-red-500 border-2  my-1 rounded-md flex items-center justify-center cursor-pointer text-lg hover:text-white md:hover:bg-red-500 duration-200"
+                          className="w-[100%] h-[20%] py-1  text-red-500 border-red-500 border-2  my-1 rounded-md flex items-center justify-center cursor-pointer text-lg md:hover:text-white md:hover:bg-red-500 duration-200"
                           onClick={() =>
                             handleCartRemove({ productId: item._id })
                           }
