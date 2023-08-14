@@ -21,7 +21,7 @@ const Listing = (data) => {
   const { wishlist, handleWishlist } = useContext(WishlistContext);
   const navigate = useNavigate();
   const { cart, updateCart } = useContext(CartContext);
-  console.log("context updated", cart);
+  // console.log("context updated", cart);
 
 
   const handleDisableButton = () => {
@@ -57,8 +57,8 @@ const Listing = (data) => {
   // adding item to cart
 
   const handle_Cart_Item = (item) => {
-    console.log("Item to cart", item);
-    console.log("COntext", cart);
+    // console.log("Item to cart", item);
+    // console.log("COntext", cart);
 
     const token = sessionStorage.getItem("access_token");
     // token not found
@@ -69,13 +69,13 @@ const Listing = (data) => {
     // tooken found
     else {
       const ob = cart.filter((obj) => obj._id === item._id);
-      console.log("FOUND", ob);
+      // console.log("FOUND", ob);
       // api call to add
       if (ob.length > 0) {
         // console.log("ITEM in wishlist");
       } else {
         cart_add_API(item, token).then((response) => {
-          console.log("Cart item data received", response.cart);
+          // console.log("Cart item data received", response.cart);
           updateCart([...response.cart]);
         });
       }

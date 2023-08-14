@@ -49,7 +49,10 @@ const Cart = () => {
       (response) => {
         console.log("qty changed", response);
         const filter = response.filter((item) => item.qty !== 0);
-        updateCart([...filter]);
+        console.log("QTY CHNAGED FILTER",filter);
+        const updated = filter.filter((item) => item.qty>0)
+        console.log("FINAL FILTER",updated);
+        updateCart(updated);
       }
     );
   };
@@ -166,10 +169,10 @@ const Cart = () => {
                            disable={item.qty===1}
                             className="border-2 text-red-500 border-red-500  px-1 cursor-pointer flex justify-center items-center  rounded-lg md:h-[25px]"
                             onClick={() =>{
-                              item.qty>=1 ? (quantityAPI({
+                              quantityAPI({
                                 productId: item._id,
                                 itemAction: "decrement",
-                              })) : (handleCartRemove({ productId: item._id }))}
+                              })}
                             }
                           >
                             <FaMinus size={20} className="p-1" />
