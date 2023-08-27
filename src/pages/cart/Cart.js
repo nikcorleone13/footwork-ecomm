@@ -43,6 +43,7 @@ const Cart = () => {
   };
 
   const quantityAPI = ({ productId, itemAction }) => {
+    setLoading(true);
     console.log("Quantity actions", productId, itemAction);
     const token = sessionStorage.getItem("access_token");
     cart_quantity_API({ encodedToken: token }, itemAction, productId).then(
@@ -52,9 +53,10 @@ const Cart = () => {
         console.log("QTY CHNAGED FILTER",filter);
         const updated = filter.filter((item) => item.qty>0)
         console.log("FINAL FILTER",updated);
-        updateCart(updated);
+        updateCart([...updated]);
       }
     );
+    setLoading(false);
   };
 
   return (

@@ -35,6 +35,7 @@ const SingleProduct = () => {
       localStorage.setItem("item_id", productId);
       const itemId = localStorage.getItem("item_id");
       setProdId(itemId);
+  
     }
 
     // API Call
@@ -119,7 +120,9 @@ const SingleProduct = () => {
       {loader ? (
         <Loader />
       ) : (
-        <>
+        showItem !== null ?
+         (
+          <>
           <Navbar />
           <div className="h-full md:h-screen w-full  flex flex-col items-center justify-center text-bgPrimary">
             {/* container div */}
@@ -286,6 +289,11 @@ const SingleProduct = () => {
             </div>
           </div>
         </>
+        ) : 
+        (
+          <h1>Item Not found :( </h1>
+          )
+
       )}
     </>
   );
