@@ -13,7 +13,7 @@ https://github.com/nikcorleone13/footwork-ecomm/assets/49964080/f09201fd-2e87-4f
 ## How to install and run locally?
 
 ```
-$ git clonehttps://github.com/nikcorleone13/footwork-ecomm.git
+$ git clone https://github.com/nikcorleone13/footwork-ecomm.git
 $ cd footwork
 $ npm install
 $ npm start
